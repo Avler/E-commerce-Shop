@@ -8,13 +8,13 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 interface Products {
-  id: Number;
-  Category: Text;
-  For: Text;
-  Item: Text;
-  Name: Text;
-  Prize: Number;
-  img: Text;
+  id: number;
+  Category: string;
+  For: string;
+  Item: string;
+  Name: string;
+  Prize: number;
+  img: string;
 }
 
 const App = () => {
