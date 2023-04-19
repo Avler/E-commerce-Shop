@@ -15,6 +15,7 @@ interface Products {
   Name: string;
   Prize: number;
   img: string;
+  isliked:boolean;
 }
 
 const App = () => {
@@ -35,7 +36,7 @@ const App = () => {
     fetchData()
   }, []) 
 
- 
+
 
   return (
     <>
