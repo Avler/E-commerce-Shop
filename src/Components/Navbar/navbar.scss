@@ -5,7 +5,8 @@
     .navbar-elements {
         display: flex;
         justify-content: space-evenly;
-        align-items: center;   
+        align-items: center;  
+        width: 100%; 
         .navbar-elements-person{
             display: flex;
             list-style: none;
@@ -21,6 +22,7 @@
                 background-color: white;
                 border-radius: 5px;
                 font-size:  clamp(1rem, 0.8286rem + 0.4571vw, 1.1rem);
+                
             }
             li:hover{
                 background-color: darken($color: white, $amount: 8);
@@ -31,7 +33,9 @@
         align-items: center;
         gap: 1rem;
         width: min(100% - 50px ,350px);
-        
+        h1{
+            font-size: clamp(1rem, 0.8286rem + 0.4571vw, 2rem) ;
+        }
         img{
             width: 44px;
         }

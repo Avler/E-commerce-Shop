@@ -57,21 +57,19 @@
             gap: 10px;
         
             .arrow-left{
-                width: 50px;
+                width: 60px;
                 position: absolute;
                 left: 500px;
                 display: none;
                 transform: translateX(-50%);
-                opacity: 0.8;
                 cursor: pointer;
             }
             .arrow-right{
-                width: 50px;
+                width: 60px;
                 position: absolute;
                 right: 500px;
                 display: none;
                 transform: translateX(-50%);
-                opacity: 0.8;
                 cursor: pointer;
             }
            
@@ -83,6 +81,7 @@
                 position: relative;
                 .product-img{
                     width: 250px;
+
                 }
                 .heart-img {
                     position: absolute;

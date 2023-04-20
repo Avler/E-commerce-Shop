@@ -3,6 +3,7 @@
  import heart from "../../assets/heart.png"
  import basket from "../../assets/basket.png"
  import "./navbar.scss"
+ import {Link} from "react-router-dom"
 
  const Navbar = () => {
     return(
@@ -10,13 +11,13 @@
             <div className="navbar-elements">
                 <div className="navbar-elements-person-conteiner">
                     <ul className="navbar-elements-person">
-                        <li>Man</li>
-                        <li>Woman</li>
-                        <li>Kids</li>
+                        <Link to="/Man"><li>Man</li></Link>
+                        <Link to="/Woman"><li>Woman</li></Link>
+                        <Link to="/Kids"><li>Kids</li></Link>
                     </ul>
                 </div>
                 <div className="navbar-elements-logo">
-                    <img src={logo} alt="logo of website" />
+                    <Link to="/"><img src={logo} alt="logo of website" /></Link>
                     <h1>AvShop</h1>
                 </div>
                 <div className="navbar-elements-panel">

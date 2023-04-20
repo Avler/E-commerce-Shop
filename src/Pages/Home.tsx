@@ -9,7 +9,7 @@ interface Products {
     Name: string;
     Prize: number;
     img: string;
-    isliked: boolean;
+    Isliked: boolean;
   }
 
 interface HomeProducts {

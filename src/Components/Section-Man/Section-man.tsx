@@ -4,6 +4,11 @@ import heartliked from "../../assets/heart-liked.png"
 import left from "../../assets/left.png"
 import right from "../../assets/right.png"
 import { useState , useEffect , useRef} from "react"
+import { createClient } from "@supabase/supabase-js"
+const supabaseUrl = "https://ejvptagpazmojxlvmjqa.supabase.co"
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqdnB0YWdwYXptb2p4bHZtanFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE0MDY5MjIsImV4cCI6MTk5Njk4MjkyMn0.0nFGE0d_fZhmG4fwMs2k9UoLd5ySAPpZI55ZWPDd1Dc"
+const supabase = createClient(supabaseUrl, supabaseKey)
+
 
 interface Products {
     id: number;
@@ -13,7 +18,7 @@ interface Products {
     Name: string;
     Prize: number;
     img: string;
-    isliked:boolean;
+    Isliked:boolean;
   }
 
   interface HomeProducts {
@@ -30,14 +35,18 @@ const SectionMan = (props: HomeProducts) => {
         setProductsMan(props.productsMan)
     }, [props.productsMan])
 
-    const likedProduct = (id:number) => {
-        let liked = productsMan.find(elm => elm.isliked)
+    const likedProduct = async (id:number) => {
+        let liked = productsMan.find(elm => elm.id === id)?.Isliked 
 
        setProductsMan(elem => elem.map(elm => {
-        return elm.id === id ? {...elm , isliked: !liked} : elm
+        return elm.id === id ? {...elm , Isliked: !elm.Isliked} : elm
     })) 
-    }
+   await supabase.from("Products").update({Isliked : !liked}).eq("id" , id)
+  
+}
     
+    
+
     function handleLeftArrowClick() {
         containerRef.current!.scrollBy({
           left: -800,
@@ -48,7 +57,7 @@ const SectionMan = (props: HomeProducts) => {
 
     function handleRightArrowClick() {
         containerRef.current!.scrollBy({
-          left: 800,
+          left: 1500,
           behavior: 'smooth',
         });
         setScrollLeft(containerRef.current!.scrollLeft + 200)
@@ -57,9 +66,9 @@ const SectionMan = (props: HomeProducts) => {
     const products = productsMan.map(elm =>  {
         return (
             
-                <div>
+                <div key={elm.id}>
                     <div className="img-conteiner">
-                        {elm.isliked ? <img src={heartliked} alt="" className="heart-img" onClick={() => likedProduct(elm.id)} />:<img src={heart} alt="" className="heart-img" onClick={() => (likedProduct(elm.id))} />}
+                        {elm.Isliked === true ? <img src={heartliked} alt="" className="heart-img" onClick={() => likedProduct(elm.id)} />:<img src={heart} alt="" className="heart-img" onClick={() => (likedProduct(elm.id))} />}
                         <img src={elm.img} alt="show case img " className="product-img"></img>
                     </div>
                     <div className="text-conteiner">
