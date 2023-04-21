@@ -20,11 +20,12 @@ const Home = (props: HomeProducts) => {
 
     let data = props.data
     let dataMan = data.filter(item => item.For === "Man")
+    let dataLiked = data.filter(item => item.Isliked === true)
     
     
     return(
         <div className="home-conteiner">
-            <Navbar />
+            <Navbar data = {dataLiked}/>
             <SectionMan productsMan = {dataMan}/>
         </div>
     )

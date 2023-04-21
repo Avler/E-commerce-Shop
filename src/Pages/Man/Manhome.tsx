@@ -30,9 +30,24 @@ const Manhome = (props: HomeProducts) => {
         setProductsMans(props.data)
     }, [props.data])
     const [productsMans , setProductsMans] = useState(props.data)
-    const forMan = productsMans.filter(elm => elm.For === "Man")
+    let forMan = productsMans.filter(elm => elm.For === "Man")
     
-    console.log(forMan)
+    
+    const [showlist, setShowList] = useState(false)
+    const showListItems = () => {
+        setShowList(prev => !prev)
+    }
+    const [showlist2, setShowList2] = useState(false)
+    const showListItems2 = () => {
+        setShowList2(prev => !prev)
+    }
+    
+    
+    const [allManProduct , setAllmanProduct] = useState(forMan)
+    useEffect(() => {
+        setAllmanProduct(forMan)
+    }, [productsMans])
+    
     const likedProduct = async (id:number) => {
         let liked = productsMans.find(elm => elm.id === id)?.Isliked 
 
@@ -43,7 +58,12 @@ const Manhome = (props: HomeProducts) => {
   
 }
 
-    const allManProducts = forMan.map(elm => {
+    const changProducts = (item:string) => {
+        let forManT = productsMans.filter(elm => elm.Item === item)
+        setAllmanProduct(forManT)
+    }
+   
+    const Products = allManProduct.map(elm => {
         return(
             <div className="man-home-main-products-cont">
                 <div className="img-conteiner">
@@ -71,29 +91,38 @@ const Manhome = (props: HomeProducts) => {
                     </div>
                    
                     <ul className="main-list">
-                        <li className="main-category">Clothes
-                            <ul className="sub-list">
-                                <li className="sub-category">T-shirt</li>
-                                <li className="sub-category">Shirts</li>
-                                <li className="sub-category">Shorts</li>
-                                <li className="sub-category">Hoodie</li>
-                                <li className="sub-category">Jeans</li>
+                        <li className="main-category" onClick={showListItems}>Clothes
+                        {showlist ? <ul className="sub-list">
+                                <li className="sub-category" onClick={() => changProducts("T-shirt")}>T-shirt</li>
+                                <li className="sub-category" onClick={() => changProducts("Shirts")}>Shirts</li>
+                                <li className="sub-category" onClick={() => changProducts("Shorts")}>Shorts</li>
+                                <li className="sub-category" onClick={() => changProducts("Hoodie")}>Hoodie</li>
+                                <li className="sub-category" onClick={() => changProducts("Jeans")}>Jeans</li>
                             </ul>
+                            :
+                            <></>    
+                        }
+                            
 
                         </li>
-                        <li className="main-category">Shoes
-                            <ul className="sub-list">
-                                <li className="sub-category">Sneakers</li>
-                                <li className="sub-category">Sport</li>
-                                <li className="sub-category">Elegant</li>
+                        <li className="main-category" onClick={showListItems2}>Shoes
+                        {showlist2 ? 
+                            <ul className="sub-list2">
+                                    <li className="sub-category" onClick={() => changProducts("Sneakers")}>Sneakers</li>
+                                    <li className="sub-category" onClick={() => changProducts("Sport")}>Sport</li>
+                                    <li className="sub-category" onClick={() => changProducts("Elegant")}>Elegant</li>
                             </ul>
+                        :
+                        <></>
+                        }
+                            
                         </li>
                         <li className="main-category">Accessories</li>
                         <li className="main-category">Cosmetics</li>
                     </ul>
                 </div>
                 <div className="man-home-main-product"> 
-                    {allManProducts}
+                    {Products}
                 </div>
                 
             </div>

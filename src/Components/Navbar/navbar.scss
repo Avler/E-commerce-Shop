@@ -2,6 +2,14 @@
     width: 100%;
     padding: 20px 0px;
     background-color: rgb(221, 211, 211);
+    .list-liked-items {
+        background-color: red;
+        height: 100vh;
+        width: 300px;
+        position: absolute;
+        right: 0;
+        top: 112px;
+    }
     .navbar-elements {
         display: flex;
         justify-content: space-evenly;

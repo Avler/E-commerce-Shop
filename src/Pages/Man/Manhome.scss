@@ -10,13 +10,14 @@
             font-size: clamp(1rem, 0.5714rem + 1.1429vw, 1.2rem);
             .main-category{
                 font-weight: 600;
+                
                 cursor: pointer;
-                .sub-list{
+                .sub-list , .sub-list2{
                     padding-top: 5px;
                     padding-bottom: 5px;
                     padding-left: 20px;
                     list-style: none;
-                    color: rgb(71, 71, 71);
+                    color: rgb(188, 65, 20);
                 }
                
             }

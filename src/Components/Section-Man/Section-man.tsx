@@ -5,6 +5,7 @@ import left from "../../assets/left.png"
 import right from "../../assets/right.png"
 import { useState , useEffect , useRef} from "react"
 import { createClient } from "@supabase/supabase-js"
+import { Link } from "react-router-dom"
 const supabaseUrl = "https://ejvptagpazmojxlvmjqa.supabase.co"
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqdnB0YWdwYXptb2p4bHZtanFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE0MDY5MjIsImV4cCI6MTk5Njk4MjkyMn0.0nFGE0d_fZhmG4fwMs2k9UoLd5ySAPpZI55ZWPDd1Dc"
 const supabase = createClient(supabaseUrl, supabaseKey)
@@ -85,10 +86,11 @@ const SectionMan = (props: HomeProducts) => {
         <section className="section-man-conteiner">
             <div className="section-man-categories">
                 <ul className="section-man-list">
-                    <li>Clothes</li>
-                    <li>Shoes</li>
-                    <li>Accessories</li>
-                    <li>Cosmetics</li>
+                    <Link to={"/Man"}><li>Clothes</li></Link>
+                    <Link to={"/Man"}><li>Shoes</li></Link>
+                    <Link to={"/Man"}><li>Accessories</li></Link>
+                    <Link to={"/Man"}><li>Cosmetics</li></Link>
+                    
                 </ul>
             </div>
             <div className="section-man-showcase">
