@@ -80,7 +80,7 @@ const Manhome = (props: HomeProducts) => {
 
     return(
         <section className="man-page">
-            <Navbar />
+            
             
             <div className="man-home-section">
                 <div className="man-home-main">

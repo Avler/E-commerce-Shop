@@ -32,7 +32,7 @@ interface HomeProducts {
         useEffect(() => {
             setDataAll(props.data)
         }, [dataAll])
-        console.log(dataAll)
+        
     return(
         <section className="navbar-conteiner">
             <div className="navbar-elements">

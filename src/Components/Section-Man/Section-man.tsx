@@ -61,7 +61,7 @@ const SectionMan = (props: HomeProducts) => {
           left: 1500,
           behavior: 'smooth',
         });
-        setScrollLeft(containerRef.current!.scrollLeft + 200)
+        setScrollLeft(containerRef.current!.scrollLeft - 200)
       }
 
     const products = productsMan.map(elm =>  {

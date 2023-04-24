@@ -1,5 +1,6 @@
 import Navbar from "../Components/Navbar/Navbar"
 import SectionMan from "../Components/Section-Man/Section-man"
+import {useSelector} from "react-redux"
 
 interface Products {
     id: number;
@@ -16,18 +17,23 @@ interface HomeProducts {
     data: Products[];
 }
 
-const Home = (props: HomeProducts) => {
+const Home = () => {
 
-    let data = props.data
+    const products = useSelector((state)=>state.product.value.item)
+    let data = products
+
+   
+    
     let dataMan = data.filter(item => item.For === "Man")
     let dataLiked = data.filter(item => item.Isliked === true)
     
-    
+    if(!data) return null
     return(
-        <div className="home-conteiner">
-            <Navbar data = {dataLiked}/>
+        <>
+           
             <SectionMan productsMan = {dataMan}/>
-        </div>
+        </>
+ 
     )
 }
 
