@@ -34,12 +34,14 @@ const Manhome = (props: HomeProducts) => {
     
     
     const [showlist, setShowList] = useState(false)
-    const showListItems = () => {
-        setShowList(prev => !prev)
+    const showListItems = (item:boolean) => {
+            setShowList(item)  
+            setShowList2(false)
     }
     const [showlist2, setShowList2] = useState(false)
-    const showListItems2 = () => {
-        setShowList2(prev => !prev)
+    const showListItems2 = (item:boolean) => {
+        setShowList2(item)
+        setShowList(false)
     }
     
     
@@ -91,7 +93,7 @@ const Manhome = (props: HomeProducts) => {
                     </div>
                    
                     <ul className="main-list">
-                        <li className="main-category" onClick={showListItems}>Clothes
+                        <li className="main-category" onClick={() => showListItems(true)}>Clothes
                         {showlist ? <ul className="sub-list">
                                 <li className="sub-category" onClick={() => changProducts("T-shirt")}>T-shirt</li>
                                 <li className="sub-category" onClick={() => changProducts("Shirts")}>Shirts</li>
@@ -105,7 +107,7 @@ const Manhome = (props: HomeProducts) => {
                             
 
                         </li>
-                        <li className="main-category" onClick={showListItems2}>Shoes
+                        <li className="main-category" onClick={() => showListItems2(true)}>Shoes
                         {showlist2 ? 
                             <ul className="sub-list2">
                                     <li className="sub-category" onClick={() => changProducts("Sneakers")}>Sneakers</li>

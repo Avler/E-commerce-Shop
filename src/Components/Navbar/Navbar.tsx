@@ -21,17 +21,23 @@ interface HomeProducts {
     data: Products[];
 }
 
- const Navbar = (props:HomeProducts) => {
+ const Navbar = (dataLiked) => {
 
     const [likedItems , setLikedItems] = useState(false)
-    const [dataAll , setDataAll ] = useState(props.data)
+    
     const liked = () => {
         setLikedItems(prev => !prev)
     }
    
-        useEffect(() => {
-            setDataAll(props.data)
-        }, [dataAll])
+       const dataLikedProducts = dataLiked.dataLiked
+      
+    console.log(dataLikedProducts)
+       const Prod = dataLikedProducts.map(elm => { 
+        return(
+            <div>
+                <img src={elm.img} alt="" className="liked-img"/>
+            </div>
+        )})
         
     return(
         <section className="navbar-conteiner">
@@ -55,7 +61,7 @@ interface HomeProducts {
             </div>
             {likedItems ?
                 <div className="list-liked-items">
-
+                    {Prod}
                 </div>
             :
             <></>

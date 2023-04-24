@@ -4,11 +4,14 @@
     background-color: rgb(221, 211, 211);
     .list-liked-items {
         background-color: red;
-        height: 100vh;
+        height: 100%;
         width: 300px;
         position: absolute;
         right: 0;
         top: 112px;
+        .liked-img{
+            width: 100px;
+        }
     }
     .navbar-elements {
         display: flex;

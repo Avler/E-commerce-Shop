@@ -30,11 +30,10 @@ const App = () => {
  const dataProducts = useSelector(state => state.product.value.item)
   
   
-  let data = dataProducts
 
-  let dataLiked = dataProducts.filter(item => item.Isliked === true)
+  let dataLiked:Products = dataProducts.filter(item => item.Isliked === true)
 
-console.log(dataLiked)
+
 
   useEffect( () => {
     fetchData()
@@ -55,7 +54,7 @@ console.log(dataLiked)
   
   return (
     <>
-    <Navbar />
+    <Navbar dataLiked = {dataLiked}/>
     <Routes>
       <Route path='*' element={<Navigate to="/"/> }></Route>
       <Route path='/' element={<Home />}></Route>
