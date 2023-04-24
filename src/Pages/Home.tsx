@@ -19,13 +19,13 @@ interface HomeProducts {
 
 const Home = () => {
 
-    const products = useSelector((state)=>state.product.value.item)
+    const products = useSelector((state:any)=>state.product.value.item)
     let data = products
 
    
     
-    let dataMan = data.filter(item => item.For === "Man")
-    let dataLiked = data.filter(item => item.Isliked === true)
+    let dataMan = data.filter((item:Products) => item.For === "Man")
+    let dataLiked = data.filter((item:Products) => item.Isliked === true)
     
     if(!data) return null
     return(
