@@ -1,11 +1,15 @@
 import "./section-man.scss"
 import heart from "../../assets/heart.png"
 import heartliked from "../../assets/heart-liked.png"
+import basket from "../../assets/basket.png"
+import basketfull from "../../assets/basket-full.png"
 import left from "../../assets/left.png"
 import right from "../../assets/right.png"
-import { useState , useEffect , useRef} from "react"
+import { useState , useEffect , useRef, ObjectHTMLAttributes, FunctionComponent} from "react"
 import { createClient } from "@supabase/supabase-js"
 import { Link } from "react-router-dom"
+
+
 const supabaseUrl = "https://ejvptagpazmojxlvmjqa.supabase.co"
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqdnB0YWdwYXptb2p4bHZtanFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE0MDY5MjIsImV4cCI6MTk5Njk4MjkyMn0.0nFGE0d_fZhmG4fwMs2k9UoLd5ySAPpZI55ZWPDd1Dc"
 const supabase = createClient(supabaseUrl, supabaseKey)
@@ -20,33 +24,29 @@ interface Products {
     Prize: number;
     img: string;
     Isliked:boolean;
+    InBasket:boolean;
   }
 
-  interface HomeProducts {
-    productsMan: Products[];
-}
-const SectionMan = (props: HomeProducts) => {
+const SectionMan = ({productsMan , fetchData}:any) => {
 
     const containerRef = useRef<HTMLDivElement>(null);
-
-    const [productsMan , setProductsMan] = useState(props.productsMan)
     const [scrollLeft, setScrollLeft] = useState(0);
+    
 
-    useEffect(() => {
-        setProductsMan(props.productsMan)
-    }, [props.productsMan])
+    const productsForMan = productsMan
+   
+    
 
     const likedProduct = async (id:number) => {
-        let liked = productsMan.find(elm => elm.id === id)?.Isliked 
-
-       setProductsMan(elem => elem.map(elm => {
-        return elm.id === id ? {...elm , Isliked: !elm.Isliked} : elm
-    })) 
-   await supabase.from("Products").update({Isliked : !liked}).eq("id" , id)
-  
-}
-    
-    
+        let liked = productsForMan.find((elm:Products) => elm.id === id)?.Isliked 
+        await supabase.from("Products").update({Isliked : !liked}).eq("id" , id)
+        fetchData()
+    }
+    const addProduct = async (id:number) => {
+        let inbasked = productsForMan.find((elm:Products) => elm.id === id)?.InBasked 
+        await supabase.from("Products").update({InBasked : !inbasked}).eq("id" , id)
+        fetchData()
+    }
 
     function handleLeftArrowClick() {
         containerRef.current!.scrollBy({
@@ -64,11 +64,12 @@ const SectionMan = (props: HomeProducts) => {
         setScrollLeft(containerRef.current!.scrollLeft - 200)
       }
 
-    const products = productsMan.map(elm =>  {
+    const products = productsForMan.map((elm:Products) =>  {
         return (
             
                 <div key={elm.id}>
                     <div className="img-conteiner">
+                        {elm.InBasket ?<img src={basketfull} alt="basket" className="basket" onClick={() => addProduct(elm.id) } /> : <img src={basket} alt="basket" className="basket" onClick={() => addProduct(elm.id)}/>}
                         {elm.Isliked === true ? <img src={heartliked} alt="" className="heart-img" onClick={() => likedProduct(elm.id)} />:<img src={heart} alt="" className="heart-img" onClick={() => (likedProduct(elm.id))} />}
                         <img src={elm.img} alt="show case img " className="product-img"></img>
                     </div>

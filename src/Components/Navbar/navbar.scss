@@ -2,17 +2,6 @@
     width: 100%;
     padding: 20px 0px;
     background-color: rgb(221, 211, 211);
-    .list-liked-items {
-        background-color: red;
-        height: 100%;
-        width: 300px;
-        position: absolute;
-        right: 0;
-        top: 112px;
-        .liked-img{
-            width: 100px;
-        }
-    }
     .navbar-elements {
         display: flex;
         justify-content: space-evenly;
@@ -60,5 +49,46 @@
             cursor: pointer;
         }
     }
+    }
+}
+.list-liked-items {
+    background-color: rgb(221, 211, 211);
+    height: 100vh;
+    width: 350px;
+    position: absolute;
+    right: 0;
+    top: 112px;
+    z-index: 1;
+    overflow: auto;
+    .liked-products-title {
+        text-align: center;
+        font-family: Barlow;
+        font-weight: 500;
+    }
+    .liked-img {
+        width: 100px;
+    }
+    .liked-items-elements{
+        display: flex;
+        gap:20px;
+        margin:  20px; 
+        .liked-img-conteiner{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            .img-liked , .img-basked{
+                width: 30px;
+                cursor: pointer;
+            }
+            .liked-icons{
+                display: flex;
+                justify-content: space-evenly;
+                gap: 20px;
+                align-items: center;
+                justify-content: start;
+            }
+           }
+        
     }
 }

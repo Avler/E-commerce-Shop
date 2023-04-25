@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
+import supabase from './supabase'
 import { useState , useEffect } from 'react'
 import Home from './Pages/Home'
 import "./main.scss"
@@ -9,9 +9,7 @@ import { getAllProducts } from './redux/features/productSlice'
 import Navbar from './Components/Navbar/Navbar'
 
 
-const supabaseUrl = "https://ejvptagpazmojxlvmjqa.supabase.co"
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqdnB0YWdwYXptb2p4bHZtanFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE0MDY5MjIsImV4cCI6MTk5Njk4MjkyMn0.0nFGE0d_fZhmG4fwMs2k9UoLd5ySAPpZI55ZWPDd1Dc"
-const supabase = createClient(supabaseUrl, supabaseKey)
+
 
 interface Products {
   id: number;
@@ -27,11 +25,11 @@ interface Products {
 const App = () => {
 
  const dispatch = useDispatch()
- const dataProducts = useSelector(state => state.product.value.item)
+ const dataProducts = useSelector((state:any) => state.product.value.item)
   
   
 
-  let dataLiked:Products = dataProducts.filter(item => item.Isliked === true)
+  
 
 
 
@@ -54,11 +52,11 @@ const App = () => {
   
   return (
     <>
-    <Navbar dataLiked = {dataLiked}/>
+    <Navbar  fetchData ={fetchData} data ={dataProducts}/>
     <Routes>
       <Route path='*' element={<Navigate to="/"/> }></Route>
-      <Route path='/' element={<Home />}></Route>
-      <Route path='/Man' element={<Manhome data = {dataProducts}/>}></Route>
+      <Route path='/' element={<Home fetchData ={fetchData}/>}></Route>
+      <Route path='/Man' element={<Manhome data ={dataProducts}/>}></Route>
     </Routes>
       
     </>
