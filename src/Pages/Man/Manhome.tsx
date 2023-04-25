@@ -3,11 +3,10 @@ import { useState , useEffect} from "react";
 import heart from "../../assets/heart.png"
 import heartliked from "../../assets/heart-liked.png"
 import { createClient } from "@supabase/supabase-js";
+import basket from "../../assets/basket.png"
+import basketfull from "../../assets/basket-full.png"
 import "./Manhome.scss"
-
-const supabaseUrl = "https://ejvptagpazmojxlvmjqa.supabase.co"
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqdnB0YWdwYXptb2p4bHZtanFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE0MDY5MjIsImV4cCI6MTk5Njk4MjkyMn0.0nFGE0d_fZhmG4fwMs2k9UoLd5ySAPpZI55ZWPDd1Dc"
-const supabase = createClient(supabaseUrl, supabaseKey)
+import supabase from "../../supabase";
 
 interface Products {
     id: number;
@@ -18,21 +17,14 @@ interface Products {
     Prize: number;
     img: string;
     Isliked: boolean;
+    InBasket: boolean;
   }
 
-interface HomeProducts {
-    data: Products[];
-}
+const Manhome = ({data , fetchData}:any) => {
 
-const Manhome = (props: HomeProducts) => {
+    const forMan = data.filter((elm:any) => elm.For === "Man")
+    const [showCategory , setShowCategory] = useState(forMan)
 
-    useEffect(() => {
-        setProductsMans(props.data)
-    }, [props.data])
-    const [productsMans , setProductsMans] = useState(props.data)
-    let forMan = productsMans.filter(elm => elm.For === "Man")
-    
-    
     const [showlist, setShowList] = useState(false)
     const showListItems = (item:boolean) => {
             setShowList(item)  
@@ -44,31 +36,29 @@ const Manhome = (props: HomeProducts) => {
         setShowList(false)
     }
     
-    
-    const [allManProduct , setAllmanProduct] = useState(forMan)
-    useEffect(() => {
-        setAllmanProduct(forMan)
-    }, [productsMans])
+
     
     const likedProduct = async (id:number) => {
-        let liked = productsMans.find(elm => elm.id === id)?.Isliked 
-
-       setProductsMans(elem => elem.map(elm => {
-        return elm.id === id ? {...elm , Isliked: !elm.Isliked} : elm
-    })) 
-   await supabase.from("Products").update({Isliked : !liked}).eq("id" , id)
-  
-}
+        let liked = data.find((elm:Products) => elm.id === id)?.Isliked 
+        await supabase.from("Products").update({Isliked : !liked}).eq("id" , id)
+        fetchData()
+    }
+    const addProduct = async (id:number) => {
+        let inbasket = forMan.find((elm:Products) => elm.id === id)?.InBasket 
+        await supabase.from("Products").update({InBasket : !inbasket}).eq("id" , id)
+        fetchData()
+    }
 
     const changProducts = (item:string) => {
-        let forManT = productsMans.filter(elm => elm.Item === item)
-        setAllmanProduct(forManT)
+        let forManT = forMan.filter((elm:Products) => elm.Item === item)
+        setShowCategory(forManT)
     }
    
-    const Products = allManProduct.map(elm => {
+    const Products = showCategory.map((elm:Products) => {
         return(
             <div className="man-home-main-products-cont">
                 <div className="img-conteiner">
+                        {elm.InBasket ?<img src={basketfull} alt="basket" className="basket" onClick={() => addProduct(elm.id) } /> : <img src={basket} alt="basket" className="basket" onClick={() => addProduct(elm.id)}/>}
                         {elm.Isliked === true ? <img src={heartliked} alt="" className="heart-img" onClick={() => likedProduct(elm.id)} />:<img src={heart} alt="" className="heart-img" onClick={() => (likedProduct(elm.id))} />}
                         <img src={elm.img} alt="show case img " className="product-img"></img>
                     </div>

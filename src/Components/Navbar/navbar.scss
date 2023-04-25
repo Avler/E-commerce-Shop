@@ -60,6 +60,11 @@
     top: 112px;
     z-index: 1;
     overflow: auto;
+    .basket-counter{
+        text-align: center;
+        font-size: 1.4rem;
+        margin: 70px 0px ;
+    }
     .liked-products-title {
         text-align: center;
         font-family: Barlow;

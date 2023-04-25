@@ -43,8 +43,8 @@ const SectionMan = ({productsMan , fetchData}:any) => {
         fetchData()
     }
     const addProduct = async (id:number) => {
-        let inbasked = productsForMan.find((elm:Products) => elm.id === id)?.InBasked 
-        await supabase.from("Products").update({InBasked : !inbasked}).eq("id" , id)
+        let inbasket = productsForMan.find((elm:Products) => elm.id === id)?.InBasket 
+        await supabase.from("Products").update({InBasket : !inbasket}).eq("id" , id)
         fetchData()
     }
 

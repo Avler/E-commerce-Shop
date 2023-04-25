@@ -56,7 +56,7 @@ const App = () => {
     <Routes>
       <Route path='*' element={<Navigate to="/"/> }></Route>
       <Route path='/' element={<Home fetchData ={fetchData}/>}></Route>
-      <Route path='/Man' element={<Manhome data ={dataProducts}/>}></Route>
+      <Route path='/Man' element={<Manhome data ={dataProducts} fetchData ={fetchData}/>}></Route>
     </Routes>
       
     </>

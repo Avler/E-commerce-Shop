@@ -26,6 +26,8 @@
 
     const [likedItems , setLikedItems] = useState(false)
     const [basket , setBasket] = useState(false)
+    const [userPanel, setUserPanel] = useState(false)
+    const [prize , setPrize] = useState(0)
     
     const dataLiked = data.filter((item:Products) => item.Isliked === true)
     const dataFromBasket = data.filter((item:Products) => item.InBasket === true)
@@ -38,8 +40,21 @@
         setBasket(prev => !prev)
         setLikedItems(false)
     }
+    const prizeOfBasket = (object:any) => {
+        let totalprize = 0 
+        for (let i=0; i < object.length ; i++) {
+            totalprize += object[i].Prize;
+        }
+        return totalprize
+    }
+   
+    useEffect(() => {
+        const totalprize = prizeOfBasket(dataFromBasket)
+        setPrize(totalprize)
+    }, [dataFromBasket])
+    
     const addProduct = async (id:number) => {
-        let inbasket = data.find((elm:Products) => elm.id === id)?.InBasked 
+        let inbasket = data.find((elm:Products) => elm.id === id)?.InBasket 
         await supabase.from("Products").update({InBasket : !inbasket}).eq("id" , id)
         fetchData()
 }
@@ -57,6 +72,7 @@
                     <img src={elm.img} alt="" className="liked-img"/>
                     <div className="liked-img-conteiner">
                         <p>{elm.Name}</p>
+                        <p>Prize: {elm.Prize} $</p>
                         <div className="liked-icons">
                             {elm.InBasket ?<img src={basketfull} alt="basket" className="img-basked" onClick={() => addProduct(elm.id) } /> : <img src={basketimg} alt="basket" className="img-basked" onClick={() => addProduct(elm.id)}/>}
                             {elm.Isliked === true ? <img src={heartliked} alt="liked" className="img-liked" onClick={() => likedProduct(elm.id)} />:<img src={heart} alt="not liked" className="img-liked" onClick={() => (likedProduct(elm.id))} />}
@@ -73,6 +89,7 @@
                         <img src={elm.img} alt="" className="liked-img"/>
                         <div className="liked-img-conteiner">
                             <p>{elm.Name}</p>
+                            <p>Prize: {elm.Prize} $</p>
                             <div className="liked-icons">
                                 {elm.InBasket ?<img src={basketfull} alt="basket" className="img-basked" onClick={() => addProduct(elm.id) } /> : <img src={basketimg} alt="basket" className="img-basked" onClick={() => addProduct(elm.id)}/>}
                                 {elm.Isliked === true ? <img src={heartliked} alt="liked" className="img-liked" onClick={() => likedProduct(elm.id)} />:<img src={heart} alt="not liked" className="img-liked" onClick={() => (likedProduct(elm.id))} />}
@@ -115,8 +132,9 @@
         }
         {basket ?
                 <div className="list-liked-items">
-                    <h1 className="liked-products-title">Your Basked</h1>
+                    <h1 className="liked-products-title">Shopping Cart</h1>
                     {ProdBasked}
+                    <p className="basket-counter">Total Prize is: {prize} $</p>
                 </div>
             :
             <></>
