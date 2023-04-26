@@ -8,6 +8,8 @@
  import "./navbar.scss"
  import {Link} from "react-router-dom"
  import { useState , useEffect } from "react"
+ import RegisterForm from "./Register/RegisterFrom"
+ import LoginFrom from "./UserLog/LoginForm"
 
  interface Products {
     id: number;
@@ -28,6 +30,7 @@
     const [basket , setBasket] = useState(false)
     const [userPanel, setUserPanel] = useState(false)
     const [prize , setPrize] = useState(0)
+    const [showRegister , setShowRegister] = useState(false)
     
     const dataLiked = data.filter((item:Products) => item.Isliked === true)
     const dataFromBasket = data.filter((item:Products) => item.InBasket === true)
@@ -35,10 +38,22 @@
     const liked = () => {
         setLikedItems(prev => !prev)
         setBasket(false)
+        setUserPanel(false)
     }
     const baskedCont = () => {
         setBasket(prev => !prev)
         setLikedItems(false)
+        setUserPanel(false)
+    }
+
+    const showUserPanel = () => {
+        setUserPanel(prev => !prev)
+        setLikedItems(false)
+        setBasket(false)
+        setShowRegister(false)
+    }
+    const showLogin = () => {
+        setShowRegister(false)
     }
     const prizeOfBasket = (object:any) => {
         let totalprize = 0 
@@ -48,6 +63,10 @@
         return totalprize
     }
    
+    const showReg = (item:boolean) => {
+        setShowRegister(item)
+    }
+    
     useEffect(() => {
         const totalprize = prizeOfBasket(dataFromBasket)
         setPrize(totalprize)
@@ -66,7 +85,7 @@
      
       
     
-       const Prod = dataLiked.map((elm:Products) => { 
+    const ProdLiked = dataLiked.map((elm:Products) => { 
         return(
                 <div className="liked-items-elements">
                     <img src={elm.img} alt="" className="liked-img"/>
@@ -83,7 +102,7 @@
             
         )})
 
-        const ProdBasked = dataFromBasket.map((elm:Products) => { 
+    const ProdBasket = dataFromBasket.map((elm:Products) => { 
             return(
                     <div className="liked-items-elements">
                         <img src={elm.img} alt="" className="liked-img"/>
@@ -116,16 +135,16 @@
                     <h1>AvShop</h1>
                 </div>
                 <div className="navbar-elements-panel">
-                    <img src={basketimg} alt="basket" onClick={baskedCont}/>
+                    <img src={user} alt="user panel" onClick={showUserPanel} />
                     <img src={heart} alt="liked items" onClick={liked}/>
-                    <img src={user} alt="user panel" />
+                    <img src={basketimg} alt="basket" onClick={baskedCont}/>
                 </div>
             </div>
         </section>
         {likedItems ?
                 <div className="list-liked-items">
                     <h1 className="liked-products-title">Liked Products</h1>
-                    {Prod}
+                    {ProdLiked }
                 </div>
             :
             <></>
@@ -133,12 +152,23 @@
         {basket ?
                 <div className="list-liked-items">
                     <h1 className="liked-products-title">Shopping Cart</h1>
-                    {ProdBasked}
+                    {ProdBasket}
                     <p className="basket-counter">Total Prize is: {prize} $</p>
                 </div>
             :
             <></>
         }
+        {userPanel ? 
+            <div className="user-panel">
+                {showRegister ? 
+                
+                <RegisterForm showlogin= {showLogin}/>
+                : 
+                <LoginFrom showReg = {showReg}/>
+                } 
+               
+            </div>
+        : <></>}
     </>
        
     )

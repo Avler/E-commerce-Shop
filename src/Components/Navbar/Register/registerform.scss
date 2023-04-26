@@ -1,0 +1,35 @@
+.form-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .form-input{
+        width: 250px;
+        height: 35px;
+        border-radius: 2px;
+        padding-left:10px ;
+        font-size: 1.3rem;
+        border: none;
+        margin-top: 10px;
+    }
+    .user-panel-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        width: 125px;
+        height: 35px;
+        background-color: white;
+        border-radius: 5px;
+        font-size:  clamp(1rem, 0.8286rem + 0.4571vw, 1.1rem);
+        border: none;
+        margin-top: 20px;
+    }
+    .user-panel-btn:hover {
+        background-color: darken($color: white, $amount: 8);
+    }
+    .btn-cont{
+        display: flex;
+        justify-content: space-evenly;
+        gap: 10px;
+    }
+}
