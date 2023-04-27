@@ -65,7 +65,39 @@
     gap: 10px;
     border: 0.5px solid darken($color: rgb(221, 211, 211), $amount: 10);
     padding-top: 30px;
-   
+
+    .log-out-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        width: 100px;
+        height: 30px;
+        background-color: white;
+        border-radius: 5px;
+        font-size:  clamp(1rem, 0.8286rem + 0.4571vw, 1.1rem);
+        border: none;
+        margin: 10px 0px;
+    }
+    .log-out-btn:hover{
+        background-color: darken($color: white, $amount: 8);
+    } 
+
+   .panel-logedin{
+    list-style: none;
+    float: left;
+    margin-top: 10px;
+        .list-logedin{
+            cursor: pointer;
+            font-size: 1.3rem;
+            padding: 5px;
+        }
+        .list-logedin:hover{
+            color: lighten($color: #000000, $amount: 40);
+        }
+      
+        
+   }
         .user-panel-btn:hover {
             background-color: darken($color: white, $amount: 8);
         }
@@ -91,6 +123,7 @@
         text-align: center;
         font-family: Barlow;
         font-weight: 500;
+        margin-top: 40px;
     }
     .liked-img {
         width: 100px;

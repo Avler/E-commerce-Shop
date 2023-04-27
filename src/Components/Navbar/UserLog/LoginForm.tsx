@@ -2,7 +2,7 @@ import "./userlog.scss"
 import { useState } from "react"
 import supabase from "../../../supabase"
 
-const loginFrom = ({showReg}:any) => {
+const loginFrom = ({showReg , showPanel , logIn , token}:any) => {
 
     const [formData , setFormData]= useState({
         name:"" ,email:"",password:""
@@ -16,7 +16,7 @@ const loginFrom = ({showReg}:any) => {
             }
         }) 
     }
-    console.log(formData)
+   
     const handleSubmit = async (e:any) => {
         e.preventDefault()
        try{
@@ -25,8 +25,9 @@ const loginFrom = ({showReg}:any) => {
             password: formData.password
           })
        if (error) throw error
-       console.log(data)
-       alert("Login successful")
+       token(data)
+       showPanel()
+       logIn()
        } catch(error) {
         alert(error)
        }

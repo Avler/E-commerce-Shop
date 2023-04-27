@@ -7,6 +7,7 @@ import Manhome from './Pages/Man/Manhome'
 import {useDispatch , useSelector } from "react-redux"
 import { getAllProducts } from './redux/features/productSlice'
 import Navbar from './Components/Navbar/Navbar'
+import Admin from './Pages/Admin/Admin'
 
 
 
@@ -57,6 +58,7 @@ const App = () => {
       <Route path='*' element={<Navigate to="/"/> }></Route>
       <Route path='/' element={<Home fetchData ={fetchData}/>}></Route>
       <Route path='/Man' element={<Manhome data ={dataProducts} fetchData ={fetchData}/>}></Route>
+      <Route path='/Panel-Admin' element={<Admin data={dataProducts}/>}></Route>
     </Routes>
       
     </>

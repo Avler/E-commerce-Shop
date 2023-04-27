@@ -1,0 +1,74 @@
+.section-panel-admin {
+    background-color: lighten($color: rgb(221, 211, 211), $amount: 9);
+    height: 100%;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+    grid-template-rows: 1fr;
+    padding-top: 150px;
+    .section-panel-admin-list{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        .elm-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            width: 200px;
+            height: 80px;
+            background-color: white;
+            border-radius: 5px;
+            font-size:  clamp(1rem, 0.8286rem + 0.4571vw, 1.1rem);
+            border: none;
+            margin: 10px 0px;
+            list-style: none;
+        }
+        .elm-list:hover{
+            background-color: darken($color: white, $amount: 8);
+        } 
+    }
+    .section-panel-admin-form{
+        text-align: center;
+        border: 0.5px solid darken($color: rgb(221, 211, 211), $amount: 10);
+        border-radius: 10px;
+        margin-right: 100px;
+        background-color:rgb(221, 211, 211) ;
+        .section-panel-admin-title {
+            margin: 50px 0px;
+            font-size: 3rem;
+            color: rgb(88, 77, 77);
+        }
+       .prod-cont{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        .man-home-main-products-cont {
+            display: flex;
+            justify-content: start;
+            gap: 30px;
+            align-items: center;
+            margin-left: 30px;
+            margin-top: 30px;
+            .img-conteiner {
+                position: relative;
+                .product-img{
+                    width: 250px;
+                }
+                .heart-img {
+                    position: absolute;
+                    width: 30px;
+                    padding: 10px;
+                    cursor: pointer;
+                }
+                .basket{
+                    position: absolute;
+                    width: 30px;
+                    padding: 10px;
+                    right: 0;
+                    cursor: pointer;
+                }
+            }
+           }
+       }
+    }
+}
+

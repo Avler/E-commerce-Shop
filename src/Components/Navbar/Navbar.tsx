@@ -31,6 +31,8 @@
     const [userPanel, setUserPanel] = useState(false)
     const [prize , setPrize] = useState(0)
     const [showRegister , setShowRegister] = useState(false)
+    const [singedInPanel , setSingedInpanel] = useState(false)
+    const [token , setToken] = useState<any>(false)
     
     const dataLiked = data.filter((item:Products) => item.Isliked === true)
     const dataFromBasket = data.filter((item:Products) => item.InBasket === true)
@@ -51,6 +53,7 @@
         setLikedItems(false)
         setBasket(false)
         setShowRegister(false)
+        setSingedInpanel(true)
     }
     const showLogin = () => {
         setShowRegister(false)
@@ -66,7 +69,26 @@
     const showReg = (item:boolean) => {
         setShowRegister(item)
     }
-    
+    const logIn = () => {
+        setSingedInpanel(true)
+    }
+
+    const handleLogOut = () => {
+        sessionStorage.removeItem("token")
+        setSingedInpanel(false)
+        setToken(false)
+    }
+    if(token) {
+        sessionStorage.setItem("token" , JSON.stringify(token))
+    } 
+
+    useEffect(() =>{
+        if(sessionStorage.getItem("token")){
+            let data = JSON.parse(sessionStorage.getItem("token")!)
+            setToken(data)
+        }
+    },[])
+
     useEffect(() => {
         const totalprize = prizeOfBasket(dataFromBasket)
         setPrize(totalprize)
@@ -158,17 +180,35 @@
             :
             <></>
         }
-        {userPanel ? 
-            <div className="user-panel">
-                {showRegister ? 
-                
-                <RegisterForm showlogin= {showLogin}/>
-                : 
-                <LoginFrom showReg = {showReg}/>
-                } 
-               
-            </div>
-        : <></>}
+        {userPanel && singedInPanel && token ? 
+           <div className="user-panel">
+                <ul className="panel-logedin">
+                    <li className="list-logedin">My Account</li>
+                    <li className="list-logedin">Orders</li>
+                    <li className="list-logedin">Return the item</li>
+                    <li className="list-logedin">Help and contact</li>
+       {token.user.id === "a8d449e1-b2ac-44e4-b5de-0e51bcf60db0" ?
+                    <Link to="/Panel-Admin"><li className="list-logedin" >Admin Panel</li></Link>: 
+                    <></>
+                  }  
+
+                </ul>
+                <button className="log-out-btn" onClick={handleLogOut}>Log Out</button>
+           </div>
+        :  
+        userPanel ?
+        <div className="user-panel">
+            {showRegister ? 
+            
+            <RegisterForm showlogin= {showLogin}/>
+            : 
+            <LoginFrom showReg = {showReg} showPanel={showUserPanel} logIn = {logIn} token={setToken}/>
+            } 
+       
+        </div>
+        :
+        <></>
+    }
     </>
        
     )
