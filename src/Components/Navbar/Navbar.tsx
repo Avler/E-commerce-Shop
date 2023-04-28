@@ -164,7 +164,7 @@
             </div>
         </section>
         {likedItems ?
-                <div className="list-liked-items">
+                <div className= "list-liked-items">
                     <h1 className="liked-products-title">Liked Products</h1>
                     {ProdLiked }
                 </div>

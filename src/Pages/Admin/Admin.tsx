@@ -1,4 +1,9 @@
+import { faL } from "@fortawesome/free-solid-svg-icons";
 import "./admin.scss"
+import { useState } from "react";
+import AddNewItem from "./AddnewItem";
+import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 interface Products {
     id: number;
@@ -15,8 +20,23 @@ interface Products {
 const Admin = ({data}:any) => {
 
 
+    const location = useLocation();
+    const path = location.pathname;
+    console.log(path);
+
+    const [showAddItem , setShowAddItem] = useState(true)
+    const [showEditItems , setShowEditItems] = useState(false)
+    const [showRemoveItems , setShowRemovesItems] = useState(false)
     const allProducts = data
 
+    const showEdit = ()=> {
+        setShowAddItem(false)
+        setShowEditItems(true) 
+    }
+    const showAddItems = ()=> {
+        setShowAddItem(true)
+        setShowEditItems(false) 
+    }
     const Products = data.map((elm:Products) => {
         return(
             <div className="man-home-main-products-cont">
@@ -25,25 +45,26 @@ const Admin = ({data}:any) => {
                 </div>
                 <div className="text-conteiner">
                         <p>{elm.Name}</p>
-                        <p>Prize : {elm.Prize}$</p>
+                        <p>Price : {elm.Prize}$</p>
                 </div>
             </div>
         )
     })
-
+    
     return(
         <section className="section-panel-admin">
             <div className="section-panel-admin-list">
                 <ul>
-                    <li className="elm-list">Add New Item</li>
-                    <li className="elm-list">Edit Items</li>
+                    <li className="elm-list" onClick={showAddItems}>Add New Item</li>
+                    <li className="elm-list" onClick={showEdit}>Edit Items</li>
                     <li className="elm-list">Remove Item</li>
                 </ul>
             </div>
             <div className="section-panel-admin-form">
                 <h2 className="section-panel-admin-title">All Products</h2>
                  <div className="prod-cont">
-                    {Products}
+                   {showAddItem ? <AddNewItem /> : <></>} 
+                   {showEditItems ? Products : <></>} 
                  </div>
             </div>
         </section>

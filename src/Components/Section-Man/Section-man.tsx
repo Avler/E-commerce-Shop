@@ -75,7 +75,7 @@ const SectionMan = ({productsMan , fetchData}:any) => {
                     </div>
                     <div className="text-conteiner">
                         <p>{elm.Name}</p>
-                        <p>Prize : {elm.Prize}$</p>
+                        <p>Price : {elm.Prize}$</p>
                     </div>
                     
                 </div>
