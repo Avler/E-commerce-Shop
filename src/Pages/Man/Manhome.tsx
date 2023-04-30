@@ -29,13 +29,20 @@ const Manhome = ({data , fetchData}:any) => {
     const showListItems = (item:boolean) => {
             setShowList(item)  
             setShowList2(false)
+            setShowList3(false)
     }
     const [showlist2, setShowList2] = useState(false)
     const showListItems2 = (item:boolean) => {
         setShowList2(item)
         setShowList(false)
+        setShowList3(false)
     }
-    
+    const [showlist3, setShowList3] = useState(false)
+    const showListItems3 = (item:boolean) => {
+        setShowList3(item)
+        setShowList(false)
+        setShowList2(false)
+    }
 
     
     const likedProduct = async (id:number) => {
@@ -109,8 +116,17 @@ const Manhome = ({data , fetchData}:any) => {
                         }
                             
                         </li>
-                        <li className="main-category">Accessories</li>
-                        <li className="main-category">Cosmetics</li>
+                       <li className="main-category" onClick={() => showListItems3(true)}>Accessories
+                       {showlist3 ? 
+                        <ul className="sub-list3">
+                                <li className="sub-category" onClick={() => changProducts("Glasses")}>Glasses</li>
+                                <li className="sub-category" onClick={() => changProducts("Watch")}>Watches</li>
+                                <li className="sub-category" onClick={() => changProducts("Belt")}>Belts</li>
+                        </ul>
+                        : <></>
+                            } 
+                        </li>
+                    
                     </ul>
                 </div>
                 <div className="man-home-main-product"> 

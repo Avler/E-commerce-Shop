@@ -6,13 +6,10 @@ import basketfull from "../../assets/basket-full.png"
 import left from "../../assets/left.png"
 import right from "../../assets/right.png"
 import { useState , useEffect , useRef, ObjectHTMLAttributes, FunctionComponent} from "react"
-import { createClient } from "@supabase/supabase-js"
 import { Link } from "react-router-dom"
+import supabase from "../../supabase"
 
 
-const supabaseUrl = "https://ejvptagpazmojxlvmjqa.supabase.co"
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqdnB0YWdwYXptb2p4bHZtanFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE0MDY5MjIsImV4cCI6MTk5Njk4MjkyMn0.0nFGE0d_fZhmG4fwMs2k9UoLd5ySAPpZI55ZWPDd1Dc"
-const supabase = createClient(supabaseUrl, supabaseKey)
 
 
 interface Products {
@@ -90,7 +87,6 @@ const SectionMan = ({productsMan , fetchData}:any) => {
                     <Link to={"/Man"}><li>Clothes</li></Link>
                     <Link to={"/Man"}><li>Shoes</li></Link>
                     <Link to={"/Man"}><li>Accessories</li></Link>
-                    <Link to={"/Man"}><li>Cosmetics</li></Link>
                     
                 </ul>
             </div>
