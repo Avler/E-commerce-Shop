@@ -1,8 +1,7 @@
-import Navbar from "../../Components/Navbar/Navbar"
+
 import { useState , useEffect} from "react";
 import heart from "../../assets/heart.png"
 import heartliked from "../../assets/heart-liked.png"
-import { createClient } from "@supabase/supabase-js";
 import basket from "../../assets/basket.png"
 import basketfull from "../../assets/basket-full.png"
 import "./Manhome.scss"
@@ -24,6 +23,9 @@ const Manhome = ({data , fetchData}:any) => {
 
     const forMan = data.filter((elm:any) => elm.For === "Man")
     const [showCategory , setShowCategory] = useState(forMan)
+
+
+
 
     const [showlist, setShowList] = useState(false)
     const showListItems = (item:boolean) => {

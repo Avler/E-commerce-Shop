@@ -8,6 +8,7 @@ import {useDispatch , useSelector } from "react-redux"
 import { getAllProducts } from './redux/features/productSlice'
 import Navbar from './Components/Navbar/Navbar'
 import Admin from './Pages/Admin/Admin'
+import Footer from './Components/Footer/Footer'
 
 
 
@@ -60,7 +61,7 @@ const App = () => {
       <Route path='/Man' element={<Manhome data ={dataProducts} fetchData ={fetchData}/>}></Route>
       <Route path='/Panel-Admin' element={<Admin data={dataProducts}/>}></Route>
     </Routes>
-      
+    <Footer />
     </>
   )
 }
