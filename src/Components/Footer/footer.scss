@@ -13,9 +13,28 @@
     .footer-element{
         display: flex;
         flex-direction: column;
+        gap: 20px;
+        .cont-list-footer{
+            margin-left: 40px;
+            .list-footer {
+                list-style: none;
+                li{
+                    cursor: pointer;
+                    padding: 2px;
+                }
+                li:hover{
+                    text-decoration: underline;
+                    text-underline-offset: 5px;
+                }
+            }
+        }
         .title-icon{
             width: 30px;
             padding: 0px 10px;
+        }
+        .title-icon-question{
+            width: 25px;
+            margin-right: 10px;
         }
         .footer-element-img{
             display: flex;
@@ -38,7 +57,20 @@
         flex-direction: column;
         justify-content: start;
         align-items: center;
-        gap: 50px;
+        gap: 20px;
+        .cont-list-footer{
+            .list-footer {
+                list-style: none;
+                li{
+                    cursor: pointer;
+                    padding: 2px;
+                }
+                li:hover{
+                    text-decoration: underline;
+                    text-underline-offset: 5px;
+                }
+            }
+        }
         .img-social{
             width: 40px;
             padding: 10px;
@@ -48,9 +80,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: -80px;
+            margin-top: -40px;
             .img-app{
-                width: 150px;
+                width: 160px;
                 cursor: pointer;
                 
             }

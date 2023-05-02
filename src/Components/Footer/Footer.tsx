@@ -39,9 +39,9 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="footer-element">
-                    <h2><img src={question} alt="question mark" className="title-icon"/>Help and contact</h2>
-                    <div>
-                        <ul>
+                    <h2><img src={question} alt="question mark" className="title-icon-question"/>Help and contact</h2>
+                    <div className="cont-list-footer">
+                        <ul className="list-footer">
                             <li>Shipment tracking</li>
                             <li>Payment methods</li>
                             <li>Return procedure</li>
@@ -53,8 +53,8 @@ const Footer = () => {
             <div className="footer-conteriner-two">
                 <div className="footer-element-two">
                     <h2>Information</h2>
-                   <div>
-                    <ul>
+                   <div  className="cont-list-footer">
+                    <ul className="list-footer">
                             <li>Company's data</li>
                             <li>Statute</li>
                             <li>Privacy policy</li>
@@ -63,7 +63,7 @@ const Footer = () => {
                    </div>
                 </div>
                 <div className="footer-element-two">
-                    <h2>Application Av</h2>
+                    <h2>Application Av Shop</h2>
                     <div className="footer-element-two-app">
                         <img src={appstore} alt="app store" className="img-app1"/>
                         <img src={googleplay} alt="google play" className="img-app"/>

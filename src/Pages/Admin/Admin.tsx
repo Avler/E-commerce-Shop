@@ -1,9 +1,8 @@
-import { faL } from "@fortawesome/free-solid-svg-icons";
+
 import "./admin.scss"
 import { useState } from "react";
 import AddNewItem from "./AddnewItem";
-import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+
 
 interface Products {
     id: number;
@@ -19,15 +18,10 @@ interface Products {
 
 const Admin = ({data}:any) => {
 
-
-    const location = useLocation();
-    const path = location.pathname;
-    console.log(path);
-
     const [showAddItem , setShowAddItem] = useState(true)
     const [showEditItems , setShowEditItems] = useState(false)
     const [showRemoveItems , setShowRemovesItems] = useState(false)
-    const allProducts = data
+    
 
     const showEdit = ()=> {
         setShowAddItem(false)
