@@ -4,7 +4,7 @@ import heart from "../../assets/heart.png"
 import heartliked from "../../assets/heart-liked.png"
 import basket from "../../assets/basket.png"
 import basketfull from "../../assets/basket-full.png"
-import "./Manhome.scss"
+import "./kidshome.scss"
 import supabase from "../../supabase";
 import Searchbar from "../../Components/search-bar/Searchbar";
 
@@ -20,11 +20,11 @@ interface Products {
     InBasket: boolean;
   }
 
-const Manhome = ({data , fetchData}:any) => {
+const Kidshome = ({data , fetchData}:any) => {
 
 
-    const forMan = data.filter((elm:any) => elm.For === "Man")
-    const [showCategory , setShowCategory] = useState(forMan)
+    const forKids = data.filter((elm:any) => elm.For === "Kids")
+    const [showCategory , setShowCategory] = useState(forKids)
     const [searchValue , setSearchValue] = useState("")
     
 
@@ -58,7 +58,7 @@ const Manhome = ({data , fetchData}:any) => {
         }))
     }
     const addProduct = async (id:number) => {
-        let inbasket = forMan.find((elm:Products) => elm.id === id)?.InBasket 
+        let inbasket = forKids.find((elm:Products) => elm.id === id)?.InBasket 
         await supabase.from("Products").update({InBasket : !inbasket}).eq("id" , id)
         fetchData()
         setShowCategory((prev:any) => prev.map((elm:Products) => {
@@ -67,7 +67,7 @@ const Manhome = ({data , fetchData}:any) => {
     }
 
     const changProducts = (item:string) => {
-        let forManT = forMan.filter((elm:Products) => elm.Item === item)
+        let forManT = forKids.filter((elm:Products) => elm.Item === item)
         setShowCategory(forManT)
     }
    
@@ -110,10 +110,8 @@ const Manhome = ({data , fetchData}:any) => {
                         <li className="main-category" onClick={() => showListItems(true)}>Clothes
                         {showlist ? <ul className="sub-list">
                                 <li className="sub-category" onClick={() => changProducts("T-shirt")}>T-shirt</li>
-                                <li className="sub-category" onClick={() => changProducts("Shirts")}>Shirts</li>
-                                <li className="sub-category" onClick={() => changProducts("Shorts")}>Shorts</li>
                                 <li className="sub-category" onClick={() => changProducts("Hoodie")}>Hoodie</li>
-                                <li className="sub-category" onClick={() => changProducts("Jeans")}>Jeans</li>
+                               
                             </ul>
                             :
                             <></>    
@@ -126,22 +124,11 @@ const Manhome = ({data , fetchData}:any) => {
                             <ul className="sub-list2">
                                     <li className="sub-category" onClick={() => changProducts("Sneakers")}>Sneakers</li>
                                     <li className="sub-category" onClick={() => changProducts("Sport")}>Sport</li>
-                                    <li className="sub-category" onClick={() => changProducts("Elegant")}>Elegant</li>
                             </ul>
                         :
                         <></>
                         }
                             
-                        </li>
-                       <li className="main-category" onClick={() => showListItems3(true)}>Accessories
-                       {showlist3 ? 
-                        <ul className="sub-list3">
-                                <li className="sub-category" onClick={() => changProducts("Glasses")}>Glasses</li>
-                                <li className="sub-category" onClick={() => changProducts("Watch")}>Watches</li>
-                                <li className="sub-category" onClick={() => changProducts("Belt")}>Belts</li>
-                        </ul>
-                        : <></>
-                            } 
                         </li>
                     
                     </ul>
@@ -155,4 +142,4 @@ const Manhome = ({data , fetchData}:any) => {
     )
 }
 
-export default Manhome
+export default Kidshome

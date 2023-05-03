@@ -9,6 +9,8 @@ import { getAllProducts } from './redux/features/productSlice'
 import Navbar from './Components/Navbar/Navbar'
 import Admin from './Pages/Admin/Admin'
 import Footer from './Components/Footer/Footer'
+import Womanhome from './Pages/Woman/Womanhome'
+import Kidshome from './Pages/Kids/Kidshome'
 
 
 
@@ -59,6 +61,8 @@ const App = () => {
       <Route path='*' element={<Navigate to="/"/> }></Route>
       <Route path='/' element={<Home fetchData ={fetchData}/>}></Route>
       <Route path='/Man' element={<Manhome data ={dataProducts} fetchData ={fetchData}/>}></Route>
+      <Route path='/Woman' element={<Womanhome data ={dataProducts} fetchData ={fetchData}/>}></Route>
+      <Route path='/Kids' element={<Kidshome data ={dataProducts} fetchData ={fetchData}/>}></Route>
       <Route path='/Panel-Admin' element={<Admin data={dataProducts}/>}></Route>
     </Routes>
     <Footer />
