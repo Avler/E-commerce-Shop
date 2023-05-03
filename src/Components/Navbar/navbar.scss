@@ -127,11 +127,29 @@
     border: 0.5px solid darken($color: rgb(221, 211, 211), $amount: 10);
     animation: slideInRight 0.8s forwards;
    
-    
+    .btn-buy{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        width: 180px;
+        height: 50px;
+        padding: 15px;
+        background-color: white;
+        border-radius: 5px;
+        font-size:  clamp(1rem, 0.8286rem + 0.4571vw, 1.1rem);
+        border: none;
+        margin: auto;
+    }
+    .btn-buy:hover {
+        background-color: darken($color: white, $amount: 8);
+    }
+
     .basket-counter{
         text-align: center;
         font-size: 1.4rem;
-        margin: 70px 0px ;
+        margin-top: 70px 0px ;
+        margin-bottom: 20px;
     }
     .liked-products-title {
         text-align: center;
@@ -157,10 +175,19 @@
             }
             .liked-icons{
                 display: flex;
+                flex-direction: column;
                 justify-content: space-evenly;
                 gap: 20px;
-                align-items: center;
+                align-items: start;
                 justify-content: start;
+                .liked-icons-cont {
+                    display: flex;
+                    gap: 10px;
+                    p{
+                        margin-top: 5px;
+                        cursor: pointer;
+                    }
+                }
             }
            }
         

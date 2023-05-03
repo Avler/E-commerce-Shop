@@ -4,6 +4,7 @@
  import heartliked from "../../assets/heart-liked.png"
  import basketimg from "../../assets/basket.png"
  import basketfull from "../../assets/basket-full.png"
+ import close from "../../assets/close.png"
  import supabase from "../../supabase"
  import "./navbar.scss"
  import {Link} from "react-router-dom"
@@ -115,8 +116,15 @@
                         <p>{elm.Name}</p>
                         <p>Prize: {elm.Prize} $</p>
                         <div className="liked-icons">
-                            {elm.InBasket ?<img src={basketfull} alt="basket" className="img-basked" onClick={() => addProduct(elm.id) } /> : <img src={basketimg} alt="basket" className="img-basked" onClick={() => addProduct(elm.id)}/>}
-                            {elm.Isliked === true ? <img src={heartliked} alt="liked" className="img-liked" onClick={() => likedProduct(elm.id)} />:<img src={heart} alt="not liked" className="img-liked" onClick={() => (likedProduct(elm.id))} />}
+                            <div className="liked-icons-cont">
+                                {elm.InBasket ?<img src={basketfull} alt="basket" className="img-basked" onClick={() => addProduct(elm.id) } /> : <img src={basketimg} alt="basket" className="img-basked" onClick={() => addProduct(elm.id)}/>}
+                                <p onClick={() => addProduct(elm.id) }>Add to Basket</p>
+                            </div>
+                            <div className="liked-icons-cont">
+                                <img src={close} alt="liked" className="img-liked" onClick={() => likedProduct(elm.id)} />
+                                <p onClick={() => likedProduct(elm.id)}>Remove Item</p>
+                            </div>
+                           
                         </div>
                         
                     </div>
@@ -132,8 +140,11 @@
                             <p>{elm.Name}</p>
                             <p>Prize: {elm.Prize} $</p>
                             <div className="liked-icons">
-                                {elm.InBasket ?<img src={basketfull} alt="basket" className="img-basked" onClick={() => addProduct(elm.id) } /> : <img src={basketimg} alt="basket" className="img-basked" onClick={() => addProduct(elm.id)}/>}
-                                {elm.Isliked === true ? <img src={heartliked} alt="liked" className="img-liked" onClick={() => likedProduct(elm.id)} />:<img src={heart} alt="not liked" className="img-liked" onClick={() => (likedProduct(elm.id))} />}
+                                
+                                <div className="liked-icons-cont">
+                                    <img src={close} alt="liked" className="img-liked" onClick={() => addProduct(elm.id) } />
+                                    <p onClick={() => addProduct(elm.id) }>Remove Item</p>
+                                </div>
                             </div>
                             
                         </div>
@@ -158,8 +169,8 @@
                 </div>
                 <div className="navbar-elements-panel">
                     <img src={user} alt="user panel" onClick={showUserPanel} />
-                    <img src={heart} alt="liked items" onClick={liked}/>
-                    <img src={basketimg} alt="basket" onClick={baskedCont}/>
+                    <img src={likedItems ? heartliked : heart} alt="liked items" onClick={liked}/>
+                    <img src={basket ? basketfull :basketimg} alt="basket" onClick={baskedCont}/>
                 </div>
             </div>
         </section>
@@ -176,6 +187,7 @@
                     <h1 className="liked-products-title">Shopping Cart</h1>
                     {ProdBasket}
                     <p className="basket-counter">Total Prize is: {prize} $</p>
+                    <button className="btn-buy">Buy Selected Products</button>
                 </div>
             :
             <></>

@@ -6,6 +6,7 @@ import basket from "../../assets/basket.png"
 import basketfull from "../../assets/basket-full.png"
 import "./Manhome.scss"
 import supabase from "../../supabase";
+import Searchbar from "../../Components/search-bar/Searchbar";
 
 interface Products {
     id: number;
@@ -23,6 +24,7 @@ const Manhome = ({data , fetchData}:any) => {
 
     const forMan = data.filter((elm:any) => elm.For === "Man")
     const [showCategory , setShowCategory] = useState(forMan)
+    const [searchValue , setSearchValue] = useState("")
 
 
 
@@ -51,11 +53,17 @@ const Manhome = ({data , fetchData}:any) => {
         let liked = data.find((elm:Products) => elm.id === id)?.Isliked 
         await supabase.from("Products").update({Isliked : !liked}).eq("id" , id)
         fetchData()
+        setShowCategory((prev:any) => prev.map((elm:Products) => {
+            return elm.id === id ? {...elm , Isliked : !liked} : elm
+        }))
     }
     const addProduct = async (id:number) => {
         let inbasket = forMan.find((elm:Products) => elm.id === id)?.InBasket 
         await supabase.from("Products").update({InBasket : !inbasket}).eq("id" , id)
         fetchData()
+        setShowCategory((prev:any) => prev.map((elm:Products) => {
+            return elm.id === id ? {...elm , InBasket : !inbasket} : elm
+        }))
     }
 
     const changProducts = (item:string) => {
@@ -63,12 +71,13 @@ const Manhome = ({data , fetchData}:any) => {
         setShowCategory(forManT)
     }
    
+
     const Products = showCategory.map((elm:Products) => {
         return(
             <div className="man-home-main-products-cont">
                 <div className="img-conteiner">
-                        {elm.InBasket ?<img src={basketfull} alt="basket" className="basket" onClick={() => addProduct(elm.id) } /> : <img src={basket} alt="basket" className="basket" onClick={() => addProduct(elm.id)}/>}
-                        {elm.Isliked === true ? <img src={heartliked} alt="" className="heart-img" onClick={() => likedProduct(elm.id)} />:<img src={heart} alt="" className="heart-img" onClick={() => (likedProduct(elm.id))} />}
+                        {elm.InBasket ?<img src={basketfull} alt="basket" className="basket heart-img-animation" onClick={() => addProduct(elm.id) } /> : <img src={basket} alt="basket" className="basket" onClick={() => addProduct(elm.id)}/>}
+                        {elm.Isliked === true ? <img src={heartliked} alt="" className="heart-img heart-img-animation" onClick={() => likedProduct(elm.id)} />:<img src={heart} alt="" className="heart-img" onClick={() => (likedProduct(elm.id))} />}
                         <img src={elm.img} alt="show case img " className="product-img"></img>
                     </div>
                     <div className="text-conteiner">
@@ -88,7 +97,13 @@ const Manhome = ({data , fetchData}:any) => {
                     <div className="man-page-overlist">
                         <h1 className="man-page-products">All Man Products</h1>
                         <h2 className="man-page-search">Search</h2>
-                        <input className="search-input"></input>
+                        <input className="search-input" 
+                            onChange={(e) => setSearchValue(e.target.value)}
+                            value={searchValue}
+                            placeholder="Search Products">
+
+                        </input>
+                        <Searchbar search={searchValue} data ={data}/>
                     </div>
                    
                     <ul className="main-list">

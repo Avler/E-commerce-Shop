@@ -65,7 +65,7 @@ const SectionKids = ({productsKids , fetchData}:any) => {
                 <div key={elm.id}>
                     <div className="img-conteiner">
                         {elm.InBasket ?<img src={basketfull} alt="basket" className="basket" onClick={() => addProduct(elm.id) } /> : <img src={basket} alt="basket" className="basket" onClick={() => addProduct(elm.id)}/>}
-                        {elm.Isliked === true ? <img src={heartliked} alt="" className="heart-img" onClick={() => likedProduct(elm.id)} />:<img src={heart} alt="" className="heart-img" onClick={() => (likedProduct(elm.id))} />}
+                        {elm.Isliked === true ? <img src={heartliked} alt="heart" className={elm.Isliked ? "heart-img heart-img-animation" : "heart-img"} onClick={() => likedProduct(elm.id)} />:<img src={heart} alt="" className="heart-img" onClick={() => (likedProduct(elm.id))} />}
                         <img src={elm.img} alt="show case img " className="product-img"></img>
                     </div>
                     <div className="text-conteiner">

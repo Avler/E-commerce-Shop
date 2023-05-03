@@ -1,3 +1,14 @@
+@keyframes imgScalingAnimation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 .section-man-conteiner{
     
     display: flex;
@@ -90,6 +101,10 @@
                     width: 30px;
                     padding: 10px;
                     cursor: pointer;
+                    transition: transform 0.3s ease;
+                }
+                .heart-img-animation {
+                    animation: imgScalingAnimation 0.6s;
                 }
                 .basket{
                     position: absolute;
