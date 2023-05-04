@@ -16,7 +16,7 @@ interface Products {
     InBasket: boolean;
   }
 
-const Admin = ({data}:any) => {
+const Admin = ({data , fetchData}:any) => {
 
     const [showAddItem , setShowAddItem] = useState(true)
     const [showEditItems , setShowEditItems] = useState(false)
@@ -55,9 +55,10 @@ const Admin = ({data}:any) => {
                 </ul>
             </div>
             <div className="section-panel-admin-form">
-                <h2 className="section-panel-admin-title">All Products</h2>
-                 <div className="prod-cont">
-                   {showAddItem ? <AddNewItem /> : <></>} 
+                 <div className="prod-cont1">
+                   {showAddItem ? <AddNewItem fetchData ={fetchData}/> : <></>} 
+                 </div>
+                 <div className="prod-cont2">
                    {showEditItems ? Products : <></>} 
                  </div>
             </div>

@@ -63,7 +63,7 @@ const App = () => {
       <Route path='/Man' element={<Manhome data ={dataProducts} fetchData ={fetchData}/>}></Route>
       <Route path='/Woman' element={<Womanhome data ={dataProducts} fetchData ={fetchData}/>}></Route>
       <Route path='/Kids' element={<Kidshome data ={dataProducts} fetchData ={fetchData}/>}></Route>
-      <Route path='/Panel-Admin' element={<Admin data={dataProducts}/>}></Route>
+      <Route path='/Panel-Admin' element={<Admin data={dataProducts} fetchData ={fetchData}/>}></Route>
     </Routes>
     <Footer />
     </>
