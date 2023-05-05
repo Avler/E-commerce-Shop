@@ -4,6 +4,8 @@ import { useState } from "react";
 import AddNewItem from "./AddnewItem";
 import close from "../../assets/close.png"
 import edit from "../../assets/edit1.png"
+import supabase from "../../supabase";
+import EditItem from "./edititem";
 
 interface Products {
     id: number;
@@ -22,7 +24,15 @@ const Admin = ({data , fetchData}:any) => {
     const [showAddItem , setShowAddItem] = useState(true)
     const [showEditItems , setShowEditItems] = useState(false)
     const [showRemoveItems , setShowRemovesItems] = useState(false)
-    
+    const [dataEdit , setDataEdit] = useState([
+        {
+        forwho: "",
+        product_category: "",
+        item_category: "",
+        product_name: "",
+        product_price: "",
+        product_img: null,
+    }])
 
     const showEdit = ()=> {
         setShowAddItem(false)
@@ -32,16 +42,36 @@ const Admin = ({data , fetchData}:any) => {
         setShowAddItem(true)
         setShowEditItems(false) 
     }
+
+    const removeProduct =  async (id:any) => {
+         await supabase
+        .from('Products')
+        .delete()
+        .eq('id', id)
+        fetchData()
+    }
+
+    const editItems = async(product:any) => {
+        setDataEdit([{
+            forwho: product.For,
+            product_category: product.Category,
+            item_category: product.Item,
+            product_name: product.Name,
+            product_price: product.Prize,
+            product_img: product.img,
+        }])
+    }
+
     const Products = data.map((elm:Products) => {
         return(
-            <div className="man-home-main-products-cont">
+            <div className="man-home-main-products-cont" id={elm.id}>
                 <div className="img-conteiner">
                         <img src={elm.img} alt="show case img " className="product-img"></img>
                 </div>
                 <div className="text-conteiner">
                     <div className="img-panel-cont">
-                        <img src={edit} alt="edit items" />
-                        <img src={close} alt="remove item" />
+                        <img src={edit} alt="edit items" onClick={() => editItems(elm)}/>
+                        <img src={close} alt="remove item" onClick={() =>removeProduct(elm.id)}/>
                     </div>
                         
                         <p>{elm.Name}</p>
@@ -50,7 +80,7 @@ const Admin = ({data , fetchData}:any) => {
             </div>
         )
     })
-    
+        
     return(
         <section className="section-panel-admin">
             <div className="section-panel-admin-list">
@@ -66,6 +96,7 @@ const Admin = ({data , fetchData}:any) => {
                  </div>
                  <div className="prod-cont2">
                    {showEditItems ? Products : <></>} 
+                   <EditItem data={dataEdit} fetchData={fetchData}/>
                  </div>
             </div>
         </section>
