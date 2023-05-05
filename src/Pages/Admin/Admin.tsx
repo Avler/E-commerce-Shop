@@ -2,7 +2,8 @@
 import "./admin.scss"
 import { useState } from "react";
 import AddNewItem from "./AddnewItem";
-
+import close from "../../assets/close.png"
+import edit from "../../assets/edit1.png"
 
 interface Products {
     id: number;
@@ -38,6 +39,11 @@ const Admin = ({data , fetchData}:any) => {
                         <img src={elm.img} alt="show case img " className="product-img"></img>
                 </div>
                 <div className="text-conteiner">
+                    <div className="img-panel-cont">
+                        <img src={edit} alt="edit items" />
+                        <img src={close} alt="remove item" />
+                    </div>
+                        
                         <p>{elm.Name}</p>
                         <p>Price : {elm.Prize}$</p>
                 </div>
@@ -50,8 +56,8 @@ const Admin = ({data , fetchData}:any) => {
             <div className="section-panel-admin-list">
                 <ul>
                     <li className="elm-list" onClick={showAddItems}>Add New Item</li>
-                    <li className="elm-list" onClick={showEdit}>Edit Items</li>
-                    <li className="elm-list">Remove Item</li>
+                    <li className="elm-list" onClick={showEdit}>Edit / Remove Items</li>
+                    
                 </ul>
             </div>
             <div className="section-panel-admin-form">

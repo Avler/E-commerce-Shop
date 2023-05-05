@@ -1,5 +1,4 @@
 import "./addnewitem.scss";
-
 import { useFormik } from "formik";
 import supabase from "../../supabase";
 
