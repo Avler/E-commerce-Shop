@@ -1,0 +1,12 @@
+.edit-panel-conteiner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 230px;
+    width: 1500px;
+    margin-top: 200px;
+    .img-edit{
+        width: 380px;
+        border: 0.5px solid darken($color: rgb(221, 211, 211), $amount: 10);
+    }
+}

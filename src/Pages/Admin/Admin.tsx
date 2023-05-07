@@ -23,7 +23,7 @@ const Admin = ({data , fetchData}:any) => {
 
     const [showAddItem , setShowAddItem] = useState(true)
     const [showEditItems , setShowEditItems] = useState(false)
-    const [showRemoveItems , setShowRemovesItems] = useState(false)
+    const [editItemsList , setEditItemsList] = useState(false)
     const [dataEdit , setDataEdit] = useState([
         {
         forwho: "",
@@ -36,12 +36,15 @@ const Admin = ({data , fetchData}:any) => {
 
     const showEdit = ()=> {
         setShowAddItem(false)
-        setShowEditItems(true) 
+        setShowEditItems(true)
+        setEditItemsList(false) 
     }
     const showAddItems = ()=> {
         setShowAddItem(true)
         setShowEditItems(false) 
+        setEditItemsList(false)
     }
+   
 
     const removeProduct =  async (id:any) => {
          await supabase
@@ -60,11 +63,14 @@ const Admin = ({data , fetchData}:any) => {
             product_price: product.Prize,
             product_img: product.img,
         }])
+        setShowAddItem(false)
+        setShowEditItems(false) 
+        setEditItemsList(true)
     }
 
     const Products = data.map((elm:Products) => {
         return(
-            <div className="man-home-main-products-cont" id={elm.id}>
+            <div className="man-home-main-products-cont" id={elm.id} key={elm.id}>
                 <div className="img-conteiner">
                         <img src={elm.img} alt="show case img " className="product-img"></img>
                 </div>
@@ -96,7 +102,7 @@ const Admin = ({data , fetchData}:any) => {
                  </div>
                  <div className="prod-cont2">
                    {showEditItems ? Products : <></>} 
-                   <EditItem data={dataEdit} fetchData={fetchData}/>
+                   {editItemsList? <EditItem data={dataEdit} fetchData={fetchData}/> : <></>}
                  </div>
             </div>
         </section>
