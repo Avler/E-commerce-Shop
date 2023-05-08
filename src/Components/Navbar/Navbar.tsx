@@ -11,6 +11,7 @@
  import { useState , useEffect } from "react"
  import RegisterForm from "./Register/RegisterFrom"
  import LoginFrom from "./UserLog/LoginForm"
+ import menuHamburger from "../../assets/menu-open.png"
 
  interface Products {
     id: number;
@@ -34,9 +35,14 @@
     const [showRegister , setShowRegister] = useState(false)
     const [singedInPanel , setSingedInpanel] = useState(false)
     const [token , setToken] = useState<any>(false)
+    const [showMenu , setShowMenu]= useState<boolean>(false)
     
     const dataLiked = data.filter((item:Products) => item.Isliked === true)
     const dataFromBasket = data.filter((item:Products) => item.InBasket === true)
+
+    const showHamburgerMenu = (parm:boolean) => {
+        setShowMenu(parm)
+    }
 
     const liked = () => {
         setLikedItems(prev => !prev)
@@ -162,7 +168,10 @@
                         <Link to="/Woman"><li>Woman</li></Link>
                         <Link to="/Kids"><li>Kids</li></Link>
                     </ul>
+                   {showMenu ? <img src={close} alt="close" onClick={() =>showHamburgerMenu(false)} className="menu-close"/>: <img src={menuHamburger} alt="menu hamburger" className="menu-hamburger" onClick={() => showHamburgerMenu(true)}/>}
+                    
                 </div>
+
                 <div className="navbar-elements-logo">
                     <Link to="/"><img src={logo} alt="logo of website" /></Link>
                     <h1>AvShop</h1>
@@ -174,6 +183,16 @@
                 </div>
             </div>
         </section>
+        {showMenu ?  
+        <div className="cont-navbar-elements-person-menu">
+            <ul className="navbar-elements-person-menu">
+                        <Link to="/Man"><li>Man</li></Link>
+                        <Link to="/Woman"><li>Woman</li></Link>
+                        <Link to="/Kids"><li>Kids</li></Link>
+            </ul>
+            
+        </div>  : <></>
+         }
         {likedItems ?
                 <div className= "list-liked-items">
                     <h1 className="liked-products-title">Liked Products</h1>

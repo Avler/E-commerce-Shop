@@ -8,21 +8,35 @@
       opacity: 1;
     }
   }
-
+  @keyframes slideInTop {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
 .navbar-conteiner {
     width: 100%;
     padding: 20px 0px;
     background-color: rgb(221, 211, 211);
     .navbar-elements {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-around;
         align-items: center;  
         width: 100%; 
+        .menu-close{
+            width: 50px;
+            height: 50px;
+            cursor: pointer;  
+        }
         .navbar-elements-person{
             display: flex;
             list-style: none;
             gap: 1rem;
-           
+          
             li{
                 display: flex;
                 align-items: center;
@@ -37,13 +51,25 @@
             }
             li:hover{
                 background-color: darken($color: white, $amount: 8);
-            } 
+            }
+       
+        @media(max-width: 1160px){
+            display: none;
+        }
+        }
+        .menu-hamburger {
+            cursor: pointer;
+        }
+        @media(min-width: 1160px){
+            .menu-hamburger{
+                display: none;
+            }
         }
     .navbar-elements-logo{
         display: flex;
         align-items: center;
         gap: 1rem;
-        width: min(100% - 50px ,350px);
+        
         h1{
             font-size: clamp(1rem, 0.8286rem + 0.4571vw, 2rem) ;
         }
@@ -61,6 +87,33 @@
         }
     }
     }
+}
+.cont-navbar-elements-person-menu {
+    position: absolute;
+    background-color: rgb(221, 211, 211);
+    width: 300px;
+    height: 200px;
+    animation: slideInTop 0.8s forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    li{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        width: 100px;
+        height: 30px;
+        background-color: white;
+        border-radius: 5px;
+        font-size:  clamp(1rem, 0.8286rem + 0.4571vw, 1.1rem);
+        margin: 20px;
+    }
+    li:hover{
+        background-color: darken($color: white, $amount: 8);
+    }
+   
 }
 .user-panel {
     background-color: rgb(221, 211, 211);
