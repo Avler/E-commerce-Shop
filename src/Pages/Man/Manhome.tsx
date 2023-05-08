@@ -96,14 +96,19 @@ const Manhome = ({data , fetchData}:any) => {
                 <div className="man-home-main">
                     <div className="man-page-overlist">
                         <h1 className="man-page-products">All Man Products</h1>
-                        <h2 className="man-page-search">Search</h2>
+                       <div className="search-cont">
+                       <h2 className="man-page-search">Search</h2>
+                       <div className="search-list">
                         <input className="search-input" 
-                            onChange={(e) => setSearchValue(e.target.value)}
-                            value={searchValue}
-                            placeholder="Search Products">
+                                onChange={(e) => setSearchValue(e.target.value)}
+                                value={searchValue}
+                                placeholder="Search Products">
 
-                        </input>
-                        <Searchbar search={searchValue} data ={data}/>
+                            </input>
+                            <Searchbar search={searchValue} data ={data}/>
+                       </div>
+                       
+                       </div>
                     </div>
                    
                     <ul className="main-list">
