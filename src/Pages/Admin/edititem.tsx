@@ -3,14 +3,44 @@ import { useFormik } from "formik";
 import supabase from "../../supabase";
 import { useState } from "react";
 
-const EditItem = ({data , fetchData}:any)=> {
+const EditItem = ({data , fetchData , setDataEdit}:any)=> {
+
+
+    async function getBase64ImageFromUrl(imageUrl: any) {
+        const res = await fetch(imageUrl);
+        const blob = await res.blob();
     
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.addEventListener(
+            "load",
+            function () {
+              resolve(reader.result);
+            },
+            false
+          );
+          reader.readAsDataURL(blob);
+        });
+      }
+      
+   
+      const fileSelectedHandler = async (e:any) => {
+        let img = URL.createObjectURL(e.target.files[0])
+        const imgBase64 = await getBase64ImageFromUrl(img)
+        setDataEdit((prevEditProducts:any) => ([{
+            ...prevEditProducts,
+            product_img: imgBase64
+        }]));
+    };
     
+
     if (!Array.isArray(data)) {
         return <div>No data available.</div>;
       }
     const editPanel = data.map(elm => {
-     
+
+        
+
             const formik = useFormik({
                 initialValues: {
                 forwho: elm.forwho,
@@ -18,21 +48,25 @@ const EditItem = ({data , fetchData}:any)=> {
                 item_category: elm.item_category,
                 product_name: elm.product_name,
                 product_price: elm.product_price,
+                id: elm.id,
+                product_img: elm.product_img
                 },
                 onSubmit: async (values:any, actions:any) => {
                 await new Promise((resolve) => setTimeout(resolve, 1000));
-        
-        
+                    
+                
+                
                 const updates = {
                     For: values.forwho,
                     Category:values.product_category,
                     Item: values.item_category,
                     Name: values.product_name,
                     Prize: values.product_price,
+                    img: values.product_img
                   };
-                  await supabase.from("Products").update(updates).eq("id", elm.id);
-        
-                actions.resetForm();
+                  await supabase.from("Products").update(updates).eq("id", values.id);
+                  fetchData()
+                
                 },
             });
            console.log(formik)
@@ -102,12 +136,7 @@ const EditItem = ({data , fetchData}:any)=> {
                             className="form-input"
                             name="product_img"
                             id={1}
-                            onChange={(event) => {
-                            formik.setFieldValue(
-                                "product_img",
-                                event.currentTarget.files && event.currentTarget.files[0]
-                            );
-                            }}
+                            onChange={fileSelectedHandler}
                         />
                     </div>
                     <button type="submit" className="sub-btn">Edit Item</button>

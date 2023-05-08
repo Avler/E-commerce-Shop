@@ -32,8 +32,9 @@ const Admin = ({data , fetchData}:any) => {
         product_name: "",
         product_price: "",
         product_img: null,
+        id: ""
     }])
-
+  
     const showEdit = ()=> {
         setShowAddItem(false)
         setShowEditItems(true)
@@ -45,7 +46,7 @@ const Admin = ({data , fetchData}:any) => {
         setEditItemsList(false)
     }
    
-
+    
     const removeProduct =  async (id:any) => {
          await supabase
         .from('Products')
@@ -62,6 +63,7 @@ const Admin = ({data , fetchData}:any) => {
             product_name: product.Name,
             product_price: product.Prize,
             product_img: product.img,
+            id: product.id
         }])
         setShowAddItem(false)
         setShowEditItems(false) 
@@ -102,7 +104,7 @@ const Admin = ({data , fetchData}:any) => {
                  </div>
                  <div className="prod-cont2">
                    {showEditItems ? Products : <></>} 
-                   {editItemsList? <EditItem data={dataEdit} fetchData={fetchData}/> : <></>}
+                   {editItemsList? <EditItem data={dataEdit} fetchData={fetchData} setDataEdit = {setDataEdit}/> : <></>}
                  </div>
             </div>
         </section>
