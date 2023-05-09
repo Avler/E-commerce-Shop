@@ -29,6 +29,9 @@
             height: 100px;
             align-items: center;
             gap: 50px;
+            @media(max-width:600px) {
+                gap:20px
+            }
             li{
                 cursor: pointer;
                 width: 100px;
@@ -76,6 +79,12 @@
                 display: none;
                 transform: translateX(-50%);
                 cursor: pointer;
+                @media(max-width:1360px) {
+                    left: 200px;
+                }
+                @media(max-width:650px) {
+                    left: 100px;
+                }
             }
             .arrow-right{
                 width: 60px;
@@ -84,6 +93,12 @@
                 display: none;
                 transform: translateX(-50%);
                 cursor: pointer;
+                @media(max-width:1360px) {
+                    right: 200px;
+                }
+                @media(max-width:650px) {
+                    right: 100px;
+                }
             }
            
             .text-conteiner {

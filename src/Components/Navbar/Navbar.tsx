@@ -42,17 +42,22 @@
 
     const showHamburgerMenu = (parm:boolean) => {
         setShowMenu(parm)
+        setLikedItems(false)
+        setBasket(false)
+        setUserPanel(false)
     }
 
     const liked = () => {
         setLikedItems(prev => !prev)
         setBasket(false)
         setUserPanel(false)
+        setShowMenu(false)
     }
     const baskedCont = () => {
         setBasket(prev => !prev)
         setLikedItems(false)
         setUserPanel(false)
+        setShowMenu(false)
     }
 
     const showUserPanel = () => {
@@ -61,6 +66,7 @@
         setBasket(false)
         setShowRegister(false)
         setSingedInpanel(true)
+        setShowMenu(false)
     }
     const showLogin = () => {
         setShowRegister(false)

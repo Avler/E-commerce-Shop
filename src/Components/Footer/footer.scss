@@ -10,10 +10,21 @@
     justify-content: space-evenly;
     padding: 30px 0px;
     color: #fff;
+    @media(max-width:1060px){
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
     .footer-element{
         display: flex;
+        justify-content: center;
+        align-items: center;
         flex-direction: column;
         gap: 20px;
+        background-color: darken($color: rgb(129, 117, 165), $amount: 5);
+        padding: 20px;
+        border-radius: 5px;
+        width: 300px;
         .cont-list-footer{
             margin-left: 40px;
             .list-footer {
@@ -49,15 +60,29 @@
    .footer-conteriner-two {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     padding: 30px 0px;
     background-color: rgb(77, 65, 92);
     color: #fff;
+    @media(max-width:1060px){
+        flex-direction: column;
+        gap: 20px;
+    }
     .footer-element-two{
         display: flex;
         flex-direction: column;
         justify-content: start;
         align-items: center;
         gap: 20px;
+        background-color: darken($color: rgb(77, 65, 92), $amount: 5);
+        width: 300px;
+        height: 200px;
+        border-radius: 5px;
+        padding: 20px;
+        @media(max-width:1060px){
+            align-items: center;
+            justify-content: center;
+        }
         .cont-list-footer{
             .list-footer {
                 list-style: none;
@@ -78,17 +103,19 @@
         }
         .footer-element-two-app {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-top: -40px;
+            gap: 20px;
             .img-app{
-                width: 160px;
+                width: 160px;       
                 cursor: pointer;
                 
             }
             .img-app1{
-                width: 200px;
+                width: 160px;
                 cursor: pointer;
+                
             }
         }
         

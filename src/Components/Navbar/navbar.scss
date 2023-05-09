@@ -76,6 +76,15 @@
         img{
             width: 44px;
         }
+        @media(max-width:600px){
+           flex-direction: column;
+           gap: 0px;
+           padding-left: 50px;
+            h1{
+                display: none;
+            }
+           
+        }
     }
     .navbar-elements-panel {
         display: flex;
