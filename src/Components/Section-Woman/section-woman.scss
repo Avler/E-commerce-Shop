@@ -71,7 +71,9 @@
             padding: 20px 60px;
             width: 100vw;
             gap: 10px;
-        
+            @media(max-width:1024px) {
+                overflow: auto;
+            }
             .arrow-left{
                 width: 60px;
                 position: absolute;
@@ -82,8 +84,8 @@
                 @media(max-width:1360px) {
                     left: 200px;
                 }
-                @media(max-width:650px) {
-                    left: 100px;
+                @media(max-width:1024px) {
+                    display: none;
                 }
             }
             .arrow-right{
@@ -96,8 +98,8 @@
                 @media(max-width:1360px) {
                     right: 200px;
                 }
-                @media(max-width:650px) {
-                    right: 100px;
+                @media(max-width:1024px) {
+                    display: none;
                 }
             }
            
