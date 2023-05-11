@@ -122,7 +122,7 @@
     
     const ProdLiked = dataLiked.map((elm:Products) => { 
         return(
-                <div className="liked-items-elements">
+                <div className="liked-items-elements" key={elm.id}>
                     <img src={elm.img} alt="" className="liked-img"/>
                     <div className="liked-img-conteiner">
                         <p>{elm.Name}</p>
@@ -146,7 +146,7 @@
 
     const ProdBasket = dataFromBasket.map((elm:Products) => { 
             return(
-                    <div className="liked-items-elements">
+                    <div className="liked-items-elements" key={elm.id}>
                         <img src={elm.img} alt="" className="liked-img"/>
                         <div className="liked-img-conteiner">
                             <p>{elm.Name}</p>

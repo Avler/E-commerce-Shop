@@ -69,7 +69,7 @@ const EditItem = ({data , fetchData , setDataEdit}:any)=> {
                 
                 },
             });
-           console.log(formik)
+           
         return(
             <section className="edit-panel-conteiner" key={elm.id}>
                 <img src={elm.product_img} alt="picture of edit "  className="img-edit"/>
