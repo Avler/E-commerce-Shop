@@ -4,7 +4,7 @@ import heart from "../../assets/heart.png"
 import heartliked from "../../assets/heart-liked.png"
 import basket from "../../assets/basket.png"
 import basketfull from "../../assets/basket-full.png"
-import "../Pagescss/pages.scss"
+import "../pagescss/pages.scss"
 import supabase from "../../supabase";
 import Searchbar from "../../Components/search-bar/Searchbar";
 
@@ -94,16 +94,21 @@ const Womanhome = ({data , fetchData}:any) => {
             
             <div className="man-home-section">
                 <div className="man-home-main">
-                    <div className="man-page-overlist">
-                        <h1 className="man-page-products">All Woman Products</h1>
-                        <h2 className="man-page-search">Search</h2>
-                        <input className="search-input" 
-                            onChange={(e) => setSearchValue(e.target.value)}
-                            value={searchValue}
-                            placeholder="Search Products">
+                <div className="man-page-overlist">
+                        <h1 className="man-page-products">All Man Products</h1>
+                        <div className="search-cont">
+                            <h2 className="man-page-search">Search</h2>
+                            <div className="search-list">
+                                <input className="search-input" 
+                                        onChange={(e) => setSearchValue(e.target.value)}
+                                        value={searchValue}
+                                        placeholder="Search Products">
 
-                        </input>
-                        <Searchbar search={searchValue} data ={data}/>
+                                    </input>
+                                    <Searchbar search={searchValue} data ={data}/>
+                            </div>
+                       
+                       </div>
                     </div>
                    
                     <ul className="main-list">
