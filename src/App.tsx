@@ -31,11 +31,6 @@ const App = () => {
  const dispatch = useDispatch()
  const dataProducts = useSelector((state:any) => state.product.value.item)
   
-  
-
-  
-
-
 
   useEffect( () => {
     fetchData()
