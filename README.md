@@ -2,11 +2,11 @@
 
 
 Technologies: 
-- react  -
+- react  
 - typescript 
-- scss -
-- redux -
-- backend made on supabase web ,
+- scss 
+- redux 
+- backend made on supabase web 
 
 
 ## About the Project
