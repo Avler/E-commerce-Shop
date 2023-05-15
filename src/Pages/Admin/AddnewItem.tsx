@@ -114,7 +114,7 @@ const AddNewItem = ({ fetchData }: any) => {
                 type="file"
                 className="form-input"
                 name="product_img"
-                id={1}
+                id={"1"}
                 onChange={(event) => {
                 formik.setFieldValue(
                     "product_img",
