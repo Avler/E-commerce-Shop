@@ -32,7 +32,7 @@ const Admin = ({data , fetchData}:any) => {
         product_name: "",
         product_price: "",
         product_img: null,
-        id: ""
+        id: null
     }])
   
     const showEdit = ()=> {
