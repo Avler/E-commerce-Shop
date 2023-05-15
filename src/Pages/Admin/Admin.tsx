@@ -72,7 +72,7 @@ const Admin = ({data , fetchData}:any) => {
 
     const Products = data.map((elm:Products) => {
         return(
-            <div className="man-home-main-products-cont" id={elm.id} key={elm.id}>
+            <div className="man-home-main-products-cont" id={elm.id.toString()} key={elm.id}>
                 <div className="img-conteiner">
                         <img src={elm.img} alt="show case img " className="product-img"></img>
                 </div>

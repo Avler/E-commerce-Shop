@@ -135,7 +135,7 @@ const EditItem = ({data , fetchData , setDataEdit}:any)=> {
                             type="file"
                             className="form-input"
                             name="product_img"
-                            id={1}
+                            id={"1"}
                             onChange={fileSelectedHandler}
                         />
                     </div>
