@@ -106,6 +106,9 @@
             .text-conteiner {
                 text-align: center;
                 font-size: 1.1rem;
+                @media(max-width:1160px) {
+                   font-size: 0.9rem;
+                }
             }
             .img-conteiner {
                 position: relative;
