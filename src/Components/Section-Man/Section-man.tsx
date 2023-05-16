@@ -61,6 +61,9 @@ const SectionMan = ({productsMan , fetchData}:any) => {
         setScrollLeft(containerRef.current!.scrollLeft - 200)
       }
 
+     
+      
+
     const products = productsForMan.map((elm:Products) =>  {
         return (
             

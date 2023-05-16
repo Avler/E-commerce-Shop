@@ -27,7 +27,7 @@ const Manhome = ({data , fetchData}:any) => {
     const [showCategory , setShowCategory] = useState(forMan)
     const [searchValue , setSearchValue] = useState("")
     
-
+    
 
     const [showlist, setShowList] = useState(false)
     const showListItems = (item:boolean) => {
