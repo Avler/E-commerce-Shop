@@ -67,7 +67,7 @@ const App = () => {
           <Route index element={<Home fetchData ={fetchData}/>}></Route>
           <Route path='*' element={<Navigate to="/"/> }></Route>
           <Route path='/Man' element={<Manhome data ={dataProducts} fetchData ={fetchData}/>}></Route>
-          <Route path='/Woman' element={<Womanhome data ={dataProducts} fetchData ={fetchData}/>}></Route>
+          <Route  element={<Womanhome data ={dataProducts} fetchData ={fetchData}/>}></Route>
           <Route path='/Kids' element={<Kidshome data ={dataProducts} fetchData ={fetchData}/>}></Route>
           <Route path='/Panel-Admin' element={<Admin data={dataProducts} fetchData ={fetchData}/>}></Route>
         </Route>
