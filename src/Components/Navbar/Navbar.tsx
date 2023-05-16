@@ -225,7 +225,7 @@
                     <li className="list-logedin">Return the item</li>
                     <li className="list-logedin">Help and contact</li>
        {token.user.id === "a8d449e1-b2ac-44e4-b5de-0e51bcf60db0" ?
-                    <Link to="/Panel-Admin"><li className="list-logedin" >Admin Panel</li></Link>: 
+                    <Link to="/Panel-Admin"><li className="list-logedin" onClick={showUserPanel}>Admin Panel</li></Link>: 
                     <></>
                   }  
 

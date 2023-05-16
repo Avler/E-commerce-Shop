@@ -136,6 +136,9 @@
         .section-man-showcase-img:hover {
             .arrow-right , .arrow-left{
                 display: block;
+                @media(max-width:1024px) {
+                    display: none;
+                }
             }
         }
          
