@@ -1,7 +1,14 @@
-# E-commerce-Shop 🛒
+# E-commerce-Shop 🛒 https://e-commerce-shop-avler.vercel.app/
 
 
-Technologies: react , typescript ,scss , redux , backend mad on supabase web ,
+Technologies: 
+- react  
+- typescript 
+- scss 
+- redux 
+- backend mad on supabase web 
+- Vite
+- Responsive Design
 
 
 ## About the Project
