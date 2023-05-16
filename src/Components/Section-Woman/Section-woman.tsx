@@ -88,7 +88,7 @@ const SectionWoman = ({productsWoman , fetchData}:any) => {
                 </ul>
             </div>
             <div className="section-woman-showcase">
-                <p className="section-woman-showcase-img-title" >Products For Woman</p>
+                <p className="section-woman-showcase-img-title" >Products For Women</p>
                 <div className="section-woman-showcase-img" ref={containerRef}>
                     {products}
                     <img src={left} alt="" className="arrow-left" onClick={handleLeftArrowClick}/>

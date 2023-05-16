@@ -91,7 +91,7 @@ const SectionMan = ({productsMan , fetchData}:any) => {
                 </ul>
             </div>
             <div className="section-man-showcase">
-                <p className="section-man-showcase-img-title" >Products For Man</p>
+                <p className="section-man-showcase-img-title" >Products For Men</p>
                 <div className="section-man-showcase-img" ref={containerRef}>
                     {products}
                     <img src={left} alt="" className="arrow-left" onClick={handleLeftArrowClick}/>
