@@ -70,7 +70,9 @@ const Kidshome = ({data , fetchData}:any) => {
         let forManT = forKids.filter((elm:Products) => elm.Item === item)
         setShowCategory(forManT)
     }
-   
+    const changProductsToAll = () => {
+        setShowCategory(forKids)
+    }
 
     const Products = showCategory.map((elm:Products) => {
         return(
@@ -95,7 +97,7 @@ const Kidshome = ({data , fetchData}:any) => {
             <div className="man-home-section">
                 <div className="man-home-main">
                 <div className="man-page-overlist">
-                        <h1 className="man-page-products">All Kids Products</h1>
+                        <h1 className="man-page-products" onClick={changProductsToAll}>All Kids Products</h1>
                             <div className="search-cont">
                             <h2 className="man-page-search">Search</h2>
                             <div className="search-list">
