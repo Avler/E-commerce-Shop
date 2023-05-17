@@ -29,7 +29,7 @@ const SectionKids = ({productsKids , fetchData}:any) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [scrollLeft, setScrollLeft] = useState(0);
     const productsForKids = productsKids
-   
+    productsForKids.sort((a:Products, b:Products) => a.id - b.id)
     
 
     const likedProduct = async (id:number) => {

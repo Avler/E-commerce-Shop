@@ -31,7 +31,7 @@ const SectionMan = ({productsMan , fetchData}:any) => {
     
 
     const productsForMan = productsMan
-   
+     productsForMan.sort((a:Products, b:Products) => a.id - b.id)
     
 
     const likedProduct = async (id:number) => {
