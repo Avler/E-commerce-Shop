@@ -26,7 +26,6 @@
         margin-top: 150px;
         @media(max-width:1360px){
             flex-direction: column;
-          
         }
         .main-list {
             list-style: none;
@@ -41,7 +40,6 @@
             }
             .main-category{
                 font-weight: 600;
-                
                 cursor: pointer;
                 .sub-list , .sub-list2 , .sub-list3{
                     padding-top: 5px;
@@ -54,7 +52,6 @@
                         padding-left: 0px;
                     }
                 }
-               
             }
            }
        .man-page-overlist{
@@ -89,7 +86,6 @@
                 justify-content: center;
                 align-items: center;
             }
-           
             .man-page-search{
                 font-weight: 400;
             }
@@ -102,11 +98,8 @@
                     outline: none;
                 }
             }
-           
-        }
-     
-       }
-        
+        }    
+       }   
         .man-home-main-product{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;

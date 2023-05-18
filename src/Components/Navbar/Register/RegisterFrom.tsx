@@ -16,7 +16,6 @@ const registerForm = ({showlogin}:any) => {
             }
         }) 
     }
-    
     const handleSubmit = async (e:any) => {
         e.preventDefault()
        try{
@@ -34,11 +33,8 @@ const registerForm = ({showlogin}:any) => {
        } catch(error) {
         alert(error)
        }
-  
     }
-
     return(
-      
        <form onSubmit={handleSubmit}>
             <div className="form-cont">
                 <h2 className="form-title">Fill All Fields</h2>
@@ -50,9 +46,7 @@ const registerForm = ({showlogin}:any) => {
                     <button className="user-panel-btn" type="submit">Register</button>
                 </div>
             </div>
-       </form>
-        
-       
+       </form>  
     )
 }
 

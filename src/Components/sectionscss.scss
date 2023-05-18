@@ -9,15 +9,13 @@
       transform: scale(1);
     }
   }
-.section-kids-conteiner{
-    
+.section-woman-conteiner, .section-man-conteiner , .section-kids-conteiner{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 200px;
-    .section-kids-categories{
-        background-color: rgb(60, 185, 116);
+    .section-woman-categories, .section-man-categories ,.section-kids-categories {
+        background-color: rgb(152, 80, 211);
         width: 100%;
         display: flex;
         justify-content: center;
@@ -43,12 +41,12 @@
                 color: rgb(255, 255, 255);
             }
             li:hover{
-                background-color: darken($color: rgb(60, 185, 116), $amount: 14);
+                background-color: darken($color: rgb(152, 80, 211), $amount: 14);
             }
         }
     }
-    .section-kids-showcase {
-        background-color: lighten($color: rgb(60, 185, 116), $amount: 6);
+    .section-woman-showcase,  .section-man-showcase , .section-kids-showcase{
+        background-color: lighten($color: rgb(152, 80, 211), $amount: 6);
         width: 100%;
         height: 500px;
         display: flex;
@@ -56,14 +54,13 @@
         color: white;
         padding: 20px 0px;
         overflow: hidden;
-        .section-kids-showcase-img-title{
+        .section-woman-showcase-img-title, .section-man-showcase-img-title, .section-kids-showcase-img-title{
             text-align: center;
             font-size: clamp(1rem, 0.5714rem + 1.1429vw, 2rem);
             font-weight: 700;
             margin: 20px 0px;
         }
-       
-        .section-kids-showcase-img{
+        .section-woman-showcase-img,.section-man-showcase-img , .section-kids-showcase-img{
             display: flex;
             flex-direction: row;
             overflow: hidden;
@@ -102,7 +99,6 @@
                     display: none;
                 }
             }
-           
             .text-conteiner {
                 text-align: center;
                 font-size: 1.1rem;
@@ -111,7 +107,6 @@
                 position: relative;
                 .product-img{
                     width: 250px;
-
                 }
                 .heart-img {
                     position: absolute;
@@ -131,17 +126,42 @@
                     cursor: pointer;
                 }
             }
-           
         }
-        .section-kids-showcase-img:hover {
+        .section-woman-showcase-img:hover, .section-man-showcase-img:hover , .section-kids-showcase-img:hover{
             .arrow-right , .arrow-left{
                 display: block;
                 @media(max-width:1024px) {
                     display: none;
                 }
             }
-            
         }
-         
     }
 }
+.section-man-conteiner{
+    .section-man-categories{
+        background-color: rgb(222, 167, 84);
+        ul{
+            li:hover{
+                background-color: darken($color: rgb(222, 167, 84), $amount: 14);
+            }
+        }
+        }
+    .section-man-showcase {
+            background-color: lighten($color: rgb(222, 167, 84), $amount: 6);
+        }
+}
+.section-kids-conteiner{
+    margin-bottom: 200px;
+    .section-kids-categories{
+        background-color: rgb(60, 185, 116);
+        ul{
+            li:hover{
+                background-color: darken($color: rgb(60, 185, 116), $amount: 14);
+            }
+        }
+        }
+    .section-kids-showcase {
+            background-color: lighten($color: rgb(60, 185, 116), $amount: 6);
+        }
+}
+   

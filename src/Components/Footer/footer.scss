@@ -1,6 +1,4 @@
-
-.footer-conteriner{
-    
+.footer-conteriner{   
     display: flex;
     flex-direction: column;
    .footer-conteriner-one{
@@ -107,18 +105,11 @@
             justify-content: center;
             align-items: center;
             gap: 20px;
-            .img-app{
+            .img-app,.img-app1{
                 width: 160px;       
-                cursor: pointer;
-                
-            }
-            .img-app1{
-                width: 160px;
-                cursor: pointer;
-                
+                cursor: pointer;  
             }
         }
-        
     }
    }
 }

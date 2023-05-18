@@ -36,7 +36,6 @@
             display: flex;
             list-style: none;
             gap: 1rem;
-          
             li{
                 display: flex;
                 align-items: center;
@@ -47,12 +46,10 @@
                 background-color: white;
                 border-radius: 5px;
                 font-size:  clamp(1rem, 0.8286rem + 0.4571vw, 1.1rem);
-                
             }
             li:hover{
                 background-color: darken($color: white, $amount: 8);
             }
-       
         @media(max-width: 1160px){
             display: none;
         }
@@ -83,7 +80,6 @@
             h1{
                 display: none;
             }
-           
         }
     }
     .navbar-elements-panel {
@@ -176,7 +172,6 @@
         }
 
     }
-   
 .list-liked-items {
     background-color: rgb(221, 211, 211);
     height: 100%;
@@ -188,7 +183,6 @@
     overflow: auto;
     border: 0.5px solid darken($color: rgb(221, 211, 211), $amount: 10);
     animation: slideInRight 0.8s forwards;
-   
     .btn-buy{
         display: flex;
         align-items: center;
@@ -206,7 +200,6 @@
     .btn-buy:hover {
         background-color: darken($color: white, $amount: 8);
     }
-
     .basket-counter{
         text-align: center;
         font-size: 1.4rem;
@@ -252,7 +245,6 @@
                 }
             }
            }
-        
     }
 }
 

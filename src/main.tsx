@@ -6,14 +6,11 @@ import { Provider } from 'react-redux'
 import  productReducer  from './redux/features/productSlice'
 import {configureStore} from "@reduxjs/toolkit"
 
-
 const store = configureStore({
   reducer: {
     product: productReducer,
   }
 })
-
-
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

@@ -1,37 +1,22 @@
-import "./section-kids.scss"
+import "../sectionscss.scss"
 import heart from "../../assets/heart.png"
 import heartliked from "../../assets/heart-liked.png"
 import basket from "../../assets/basket.png"
 import basketfull from "../../assets/basket-full.png"
 import left from "../../assets/left.png"
 import right from "../../assets/right.png"
-import { useState , useEffect , useRef, ObjectHTMLAttributes, FunctionComponent} from "react"
+import { useState , useRef} from "react"
 import { Link } from "react-router-dom"
 import supabase from "../../supabase"
+import { Products ,forProps } from "../../App"
 
-
-
-
-interface Products {
-    id: number;
-    Category: string;
-    For: string;
-    Item: string;
-    Name: string;
-    Prize: number;
-    img: string;
-    Isliked:boolean;
-    InBasket:boolean;
-  }
-
-const SectionKids = ({productsKids , fetchData}:any) => {
+const SectionKids = ({data , fetchData}:forProps) => {
 
     const containerRef = useRef<HTMLDivElement>(null);
     const [scrollLeft, setScrollLeft] = useState(0);
-    const productsForKids = productsKids
+    const productsForKids = data
     productsForKids.sort((a:Products, b:Products) => a.id - b.id)
     
-
     const likedProduct = async (id:number) => {
         let liked = productsForKids.find((elm:Products) => elm.id === id)?.Isliked 
         await supabase.from("Products").update({Isliked : !liked}).eq("id" , id)
@@ -42,7 +27,6 @@ const SectionKids = ({productsKids , fetchData}:any) => {
         await supabase.from("Products").update({InBasket : !inbasket}).eq("id" , id)
         fetchData()
     }
-
     function handleLeftArrowClick() {
         containerRef.current!.scrollBy({
           left: -800,
@@ -50,7 +34,6 @@ const SectionKids = ({productsKids , fetchData}:any) => {
         });
         setScrollLeft(containerRef.current!.scrollLeft - 200)
       }
-
     function handleRightArrowClick() {
         containerRef.current!.scrollBy({
           left: 1500,
@@ -58,10 +41,8 @@ const SectionKids = ({productsKids , fetchData}:any) => {
         });
         setScrollLeft(containerRef.current!.scrollLeft - 200)
       }
-
     const products = productsForKids.map((elm:Products) =>  {
         return (
-            
                 <div key={elm.id}>
                     <div className="img-conteiner">
                         {elm.InBasket ?<img src={basketfull} alt="basket" className="basket" onClick={() => addProduct(elm.id) } /> : <img src={basket} alt="basket" className="basket" onClick={() => addProduct(elm.id)}/>}
@@ -72,9 +53,7 @@ const SectionKids = ({productsKids , fetchData}:any) => {
                         <p>{elm.Name}</p>
                         <p>Price : {elm.Prize}$</p>
                     </div>
-                    
                 </div>
-            
         )
     })
 
@@ -84,8 +63,6 @@ const SectionKids = ({productsKids , fetchData}:any) => {
                 <ul className="section-kids-list">
                     <Link to={"/Kids"}><li>Clothes</li></Link>
                     <Link to={"/Kids"}><li>Shoes</li></Link>
-                    
-                    
                 </ul>
             </div>
             <div className="section-kids-showcase">
@@ -95,7 +72,6 @@ const SectionKids = ({productsKids , fetchData}:any) => {
                     <img src={left} alt="" className="arrow-left" onClick={handleLeftArrowClick}/>
                     <img src={right} alt="" className="arrow-right" onClick={handleRightArrowClick}/>
                 </div>
-                
             </div>
         </section>
     )

@@ -1,15 +1,13 @@
 import "./edititem.scss"
 import { useFormik } from "formik";
 import supabase from "../../supabase";
-import { useState } from "react";
 
 const EditItem = ({data , fetchData , setDataEdit}:any)=> {
-
 
     async function getBase64ImageFromUrl(imageUrl: any) {
         const res = await fetch(imageUrl);
         const blob = await res.blob();
-    
+
         return new Promise((resolve, reject) => {
           const reader = new FileReader();
           reader.addEventListener(
@@ -23,7 +21,6 @@ const EditItem = ({data , fetchData , setDataEdit}:any)=> {
         });
       }
       
-   
       const fileSelectedHandler = async (e:any) => {
         let img = URL.createObjectURL(e.target.files[0])
         const imgBase64 = await getBase64ImageFromUrl(img)
@@ -33,13 +30,10 @@ const EditItem = ({data , fetchData , setDataEdit}:any)=> {
         }]));
     };
     
-
     if (!Array.isArray(data)) {
         return <div>No data available.</div>;
       }
     const editPanel = data.map(elm => {
-
-        
 
             const formik = useFormik({
                 initialValues: {
@@ -49,30 +43,27 @@ const EditItem = ({data , fetchData , setDataEdit}:any)=> {
                 product_name: elm.product_name,
                 product_price: elm.product_price,
                 id: elm.id,
-                product_img: elm.product_img
+                img: elm.img
                 },
                 onSubmit: async (values:any, actions:any) => {
                 await new Promise((resolve) => setTimeout(resolve, 1000));
-                    
-                
-                
+
                 const updates = {
                     For: values.forwho,
                     Category:values.product_category,
                     Item: values.item_category,
                     Name: values.product_name,
                     Prize: values.product_price,
-                    img: values.product_img
+                    img: values.img
                   };
                   await supabase.from("Products").update(updates).eq("id", values.id);
                   fetchData()
-                
                 },
             });
            
         return(
             <section className="edit-panel-conteiner" key={elm.id}>
-                <img src={elm.product_img} alt="picture of edit "  className="img-edit"/>
+                <img src={elm.img} alt="picture of edit "  className="img-edit"/>
                 <form className="add-item" onSubmit={formik.handleSubmit}>
                     <div className="add-item-element">
                         <h2 className="add-item-title">For</h2>
@@ -142,16 +133,12 @@ const EditItem = ({data , fetchData , setDataEdit}:any)=> {
                     <button type="submit" className="sub-btn">Edit Item</button>
                 </form>
             </section>
-            
         )
     })
-    
-   
     return (
         <>
           {  editPanel }
         </>
-        
     )
 }
 

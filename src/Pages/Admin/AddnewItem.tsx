@@ -2,7 +2,7 @@ import "./addnewitem.scss";
 import { useFormik } from "formik";
 import supabase from "../../supabase";
 
-const AddNewItem = ({ fetchData }: any) => {
+const AddNewItem = ({ fetchData }: {fetchData: () => void}) => {
   
 
   async function getBase64ImageFromUrl(imageUrl: any) {
@@ -33,7 +33,6 @@ const AddNewItem = ({ fetchData }: any) => {
         },
         onSubmit: async (values:any, actions:any) => {
         await new Promise((resolve) => setTimeout(resolve, 1000));
-
         const img = URL.createObjectURL(values.product_img);
         const imgBase64 = await getBase64ImageFromUrl(img);
 

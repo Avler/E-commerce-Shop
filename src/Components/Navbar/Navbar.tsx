@@ -12,21 +12,10 @@
  import RegisterForm from "./Register/RegisterFrom"
  import LoginFrom from "./UserLog/LoginForm"
  import menuHamburger from "../../assets/menu-open.png"
-
- interface Products {
-    id: number;
-    Category: string;
-    For: string;
-    Item: string;
-    Name: string;
-    Prize: number;
-    img: string;
-    Isliked: boolean;
-    InBasket: boolean;
-  }
+ import { Products , forProps} from "../../App"
 
 
- const Navbar = ({ fetchData , data}:any) => {
+ const Navbar = ({ fetchData , data}:forProps) => {
 
     const [likedItems , setLikedItems] = useState(false)
     const [basket , setBasket] = useState(false)
@@ -46,7 +35,6 @@
         setBasket(false)
         setUserPanel(false)
     }
-
     const liked = () => {
         setLikedItems(prev => !prev)
         setBasket(false)
@@ -59,7 +47,6 @@
         setUserPanel(false)
         setShowMenu(false)
     }
-
     const showUserPanel = () => {
         setUserPanel(prev => !prev)
         setLikedItems(false)
@@ -71,21 +58,19 @@
     const showLogin = () => {
         setShowRegister(false)
     }
-    const prizeOfBasket = (object:any) => {
+    const prizeOfBasket = (object: {Prize:number}[]) => {
         let totalprize = 0 
         for (let i=0; i < object.length ; i++) {
             totalprize += object[i].Prize;
         }
         return totalprize
     }
-   
     const showReg = (item:boolean) => {
         setShowRegister(item)
     }
     const logIn = () => {
         setSingedInpanel(true)
     }
-
     const handleLogOut = () => {
         sessionStorage.removeItem("token")
         setSingedInpanel(false)
@@ -94,7 +79,6 @@
     if(token) {
         sessionStorage.setItem("token" , JSON.stringify(token))
     } 
-
     useEffect(() =>{
         if(sessionStorage.getItem("token")){
             let data = JSON.parse(sessionStorage.getItem("token")!)
@@ -118,8 +102,6 @@
         fetchData()
     }
      
-      
-    
     const ProdLiked = dataLiked.map((elm:Products) => { 
         return(
                 <div className="liked-items-elements" key={elm.id}>
@@ -136,12 +118,9 @@
                                 <img src={close} alt="liked" className="img-liked" onClick={() => likedProduct(elm.id)} />
                                 <p onClick={() => likedProduct(elm.id)}>Remove Item</p>
                             </div>
-                           
-                        </div>
-                        
+                        </div>                 
                     </div>
                 </div>
-            
         )})
 
     const ProdBasket = dataFromBasket.map((elm:Products) => { 
@@ -158,10 +137,8 @@
                                     <p onClick={() => addProduct(elm.id) }>Remove Item</p>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
-                
             )})
         
     return(
@@ -175,9 +152,7 @@
                         <Link to="/Kids"><li>Kids</li></Link>
                     </ul>
                    {showMenu ? <img src={close} alt="close" onClick={() =>showHamburgerMenu(false)} className="menu-close"/>: <img src={menuHamburger} alt="menu hamburger" className="menu-hamburger" onClick={() => showHamburgerMenu(true)}/>}
-                    
                 </div>
-
                 <div className="navbar-elements-logo">
                     <Link to="/"><img src={logo} alt="logo of website" /></Link>
                     <h1>AvShop</h1>
@@ -196,7 +171,6 @@
                         <Link to="/Woman"><li>Woman</li></Link>
                         <Link to="/Kids"><li>Kids</li></Link>
             </ul>
-            
         </div>  : <></>
          }
         {likedItems ?
@@ -228,7 +202,6 @@
                     <Link to="/Panel-Admin"><li className="list-logedin" onClick={showUserPanel}>Admin Panel</li></Link>: 
                     <></>
                   }  
-
                 </ul>
                 <button className="log-out-btn" onClick={handleLogOut}>Log Out</button>
            </div>
@@ -236,18 +209,15 @@
         userPanel ?
         <div className="user-panel">
             {showRegister ? 
-            
             <RegisterForm showlogin= {showLogin}/>
             : 
             <LoginFrom showReg = {showReg} showPanel={showUserPanel} logIn = {logIn} token={setToken}/>
             } 
-       
         </div>
         :
         <></>
     }
     </>
-       
     )
  }
 

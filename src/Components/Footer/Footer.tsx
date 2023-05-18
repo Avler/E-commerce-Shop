@@ -16,7 +16,6 @@ import card from "../../assets/credit-card.png"
 import truck from "../../assets/truck.png"
 import question from "../../assets/question.png"
 
-
 const Footer = () => {
     return(
         <section className="footer-conteriner">

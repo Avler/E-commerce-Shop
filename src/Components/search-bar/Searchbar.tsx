@@ -1,17 +1,7 @@
 import { Link } from "react-router-dom";
 import "./search.scss"
+import { Products } from "../../App";
 
-interface Products {
-    id: number;
-    Category: string;
-    For: string;
-    Item: string;
-    Name: string;
-    Prize: number;
-    img: string;
-    Isliked: boolean;
-    InBasket: boolean;
-  }
 const Searchbar = ({search,data}:any) => {
     return(
         <>
@@ -24,12 +14,10 @@ const Searchbar = ({search,data}:any) => {
                                  return product;
                              }
                          }).map((product:Products)=>
-
                              search === "" ? null : <Link to={`/products?type=${product.Name}`} key={product.id} className={"list-item"} >
                                  <span>{product.Name}</span>
                                  <img src={product.img}/>
                              </Link>
-
                          )
                      }
                  </ul>
