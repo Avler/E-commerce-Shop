@@ -9,7 +9,7 @@
  import "./navbar.scss"
  import {Link} from "react-router-dom"
  import { useState , useEffect } from "react"
- import RegisterForm from "./Register/RegisterFrom"
+ import RegisterForm from "./Register/RegisterForm"
  import LoginFrom from "./UserLog/LoginForm"
  import menuHamburger from "../../assets/menu-open.png"
  import { Products , forProps} from "../../App"
