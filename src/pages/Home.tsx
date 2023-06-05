@@ -1,7 +1,7 @@
-import SectionMan from "../Components/Section-Man/Section-man"
+import SectionMan from "../components/Section-Man/Section-man"
 import {useSelector} from "react-redux"
-import SectionWoman from "../Components/Section-Woman/Section-woman"
-import SectionKids from "../Components/Section-Kids/Section-kids"
+import SectionWoman from "../components/Section-Woman/Section-woman"
+import SectionKids from "../components/Section-Kids/Section-kids"
 import { Products } from "../App"
 
 const Home = ({fetchData}:{fetchData:() => void}) => {

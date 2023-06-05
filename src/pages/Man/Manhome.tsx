@@ -1,4 +1,3 @@
-
 import { useState}  from "react";
 import heart from "../../assets/heart.png"
 import heartliked from "../../assets/heart-liked.png"
@@ -6,8 +5,9 @@ import basket from "../../assets/basket.png"
 import basketfull from "../../assets/basket-full.png"
 import "../Pagescss/pages.scss"
 import supabase from "../../supabase";
-import Searchbar from "../../Components/search-bar/Searchbar";
+import Searchbar from "../../components/SearchBar/SearchBar";
 import { Products, forProps } from "../../App";
+
 
 const Manhome = ({data , fetchData}:forProps) => {
 
