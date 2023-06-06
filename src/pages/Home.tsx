@@ -1,8 +1,8 @@
-import SectionMan from "../components/SectionMan/SectionMan";
 import { useSelector } from "react-redux";
+import { Products } from "../App";
+import SectionMan from "../components/SectionMan/SectionMan";
 import SectionWoman from "../components/SectionWoman/SectionWoman";
 import SectionKids from "../components/SectionKids/SectionKids";
-import { Products } from "../App";
 
 const Home = ({ fetchData }: { fetchData: () => void }) => {
   const products = useSelector((state: any) => state.product.value.item);

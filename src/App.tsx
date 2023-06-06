@@ -1,16 +1,16 @@
-import supabase from "./supabase";
 import { useEffect } from "react";
-import Home from "./pages/Home";
-import "./main.scss";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Manhome from "./pages/Man/Manhome";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "./redux/features/productSlice";
+import supabase from "./supabase";
+import Home from "./pages/Home";
+import Manhome from "./pages/man/Manhome";
 import Navbar from "./components/Navbar/Navbar";
 import Admin from "./pages/admin/Admin";
 import Footer from "./components/Footer/Footer";
-import Womanhome from "./pages/Woman/Womanhome";
-import Kidshome from "./pages/Kids/Kidshome";
+import Womanhome from "./pages/woman/Womanhome";
+import Kidshome from "./pages/kid/Kidshome";
+import "./main.scss";
 
 export interface Products {
   id: number;
