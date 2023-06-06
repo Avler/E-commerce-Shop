@@ -1,31 +1,28 @@
-import "../sectionscss.scss";
+import { useState, useRef } from "react";
+import { Products, forProps } from "../../App";
+import { Link } from "react-router-dom";
 import heart from "../../assets/heart.png";
 import heartliked from "../../assets/heart-liked.png";
 import basket from "../../assets/basket.png";
 import basketfull from "../../assets/basket-full.png";
 import left from "../../assets/left.png";
 import right from "../../assets/right.png";
-import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import supabase from "../../supabase";
-import { Products, forProps } from "../../App";
+import "../../commonStyle/sectionscss";
 
-const SectionWoman = ({ data, fetchData }: forProps) => {
+const SectionKids = ({ data, fetchData }: forProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollLeft, setScrollLeft] = useState(0);
-
-  const productsForWoman = data;
-  productsForWoman.sort((a: Products, b: Products) => a.id - b.id);
+  const productsForKids = data;
+  productsForKids.sort((a: Products, b: Products) => a.id - b.id);
 
   const likedProduct = async (id: number) => {
-    let liked = productsForWoman.find(
-      (elm: Products) => elm.id === id
-    )?.Isliked;
+    let liked = productsForKids.find((elm: Products) => elm.id === id)?.Isliked;
     await supabase.from("Products").update({ Isliked: !liked }).eq("id", id);
     fetchData();
   };
   const addProduct = async (id: number) => {
-    let inbasket = productsForWoman.find(
+    let inbasket = productsForKids.find(
       (elm: Products) => elm.id === id
     )?.InBasket;
     await supabase
@@ -48,8 +45,7 @@ const SectionWoman = ({ data, fetchData }: forProps) => {
     });
     setScrollLeft(containerRef.current!.scrollLeft - 200);
   }
-
-  const products = productsForWoman.map((elm: Products) => {
+  const products = productsForKids.map((elm: Products) => {
     return (
       <div key={elm.id}>
         <div className="img-conteiner">
@@ -94,24 +90,22 @@ const SectionWoman = ({ data, fetchData }: forProps) => {
       </div>
     );
   });
+
   return (
-    <section className="section-woman-conteiner">
-      <div className="section-woman-categories">
-        <ul className="section-woman-list">
-          <Link to={"/Woman"}>
+    <section className="section-kids-conteiner">
+      <div className="section-kids-categories">
+        <ul className="section-kids-list">
+          <Link to={"/Kids"}>
             <li>Clothes</li>
           </Link>
-          <Link to={"/Woman"}>
+          <Link to={"/Kids"}>
             <li>Shoes</li>
-          </Link>
-          <Link to={"/Woman"}>
-            <li>Accessories</li>
           </Link>
         </ul>
       </div>
-      <div className="section-woman-showcase">
-        <p className="section-woman-showcase-img-title">Products For Women</p>
-        <div className="section-woman-showcase-img" ref={containerRef}>
+      <div className="section-kids-showcase">
+        <p className="section-kids-showcase-img-title">Products For Kids</p>
+        <div className="section-kids-showcase-img" ref={containerRef}>
           {products}
           <img
             src={left}
@@ -131,4 +125,4 @@ const SectionWoman = ({ data, fetchData }: forProps) => {
   );
 };
 
-export default SectionWoman;
+export default SectionKids;

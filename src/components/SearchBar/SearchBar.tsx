@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import "./search.scss";
 import { Products } from "../../App";
+import "./style.scss";
 
 const Searchbar = ({ search, data }: any) => {
   return (

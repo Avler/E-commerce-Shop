@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "./registerform.scss";
 import supabase from "../../../supabase";
+import "./style.scss";
 
 const registerForm = ({ showlogin }: any) => {
   const [formData, setFormData] = useState({

@@ -1,6 +1,6 @@
-import "./userlog.scss";
 import { useState } from "react";
 import supabase from "../../../supabase";
+import "./style.scss";
 
 const loginFrom = ({ showReg, showPanel, logIn, token }: any) => {
   const [formData, setFormData] = useState({

@@ -1,14 +1,14 @@
-import "../sectionscss.scss";
+import { useState, useRef } from "react";
+import { Products, forProps } from "../../App";
+import { Link } from "react-router-dom";
 import heart from "../../assets/heart.png";
 import heartliked from "../../assets/heart-liked.png";
 import basket from "../../assets/basket.png";
 import basketfull from "../../assets/basket-full.png";
 import left from "../../assets/left.png";
 import right from "../../assets/right.png";
-import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import supabase from "../../supabase";
-import { Products, forProps } from "../../App";
+import "../../commonStyle/sectionscss";
 
 const SectionMan = ({ data, fetchData }: forProps) => {
   const containerRef = useRef<HTMLDivElement>(null);

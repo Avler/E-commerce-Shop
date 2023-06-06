@@ -1,4 +1,3 @@
-import "./footer.scss";
 import dhl from "../../assets/dhl.png";
 import fedex from "../../assets/fedex.png";
 import ups from "../../assets/ups.png";
@@ -15,6 +14,7 @@ import twitter from "../../assets/twitter.png";
 import card from "../../assets/credit-card.png";
 import truck from "../../assets/truck.png";
 import question from "../../assets/question.png";
+import "./style.scss";
 
 const Footer = () => {
   return (

@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Products, forProps } from "../../App";
 import logo from "../../assets/logo.png";
 import user from "../../assets/user.png";
 import heart from "../../assets/heart.png";
@@ -6,13 +9,10 @@ import basketimg from "../../assets/basket.png";
 import basketfull from "../../assets/basket-full.png";
 import close from "../../assets/close.png";
 import supabase from "../../supabase";
-import "./navbar.scss";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import RegisterForm from "./Register/RegisterForm";
-import LoginFrom from "./UserLog/LoginForm";
+import LoginFrom from "./LoginForm/LoginForm";
 import menuHamburger from "../../assets/menu-open.png";
-import { Products, forProps } from "../../App";
+import "./style.scss";
 
 const Navbar = ({ fetchData, data }: forProps) => {
   const [likedItems, setLikedItems] = useState(false);
