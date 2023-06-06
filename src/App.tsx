@@ -7,7 +7,7 @@ import Manhome from "./pages/Man/Manhome";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "./redux/features/productSlice";
 import Navbar from "./components/Navbar/Navbar";
-import Admin from "./pages/Admin/Admin";
+import Admin from "./pages/admin/Admin";
 import Footer from "./components/Footer/Footer";
 import Womanhome from "./pages/Woman/Womanhome";
 import Kidshome from "./pages/Kids/Kidshome";
