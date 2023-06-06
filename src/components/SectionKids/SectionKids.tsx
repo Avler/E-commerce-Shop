@@ -8,7 +8,7 @@ import basketfull from "../../assets/basket-full.png";
 import left from "../../assets/left.png";
 import right from "../../assets/right.png";
 import supabase from "../../supabase";
-import "../../commonStyle/sectionscss";
+import "../../commonStyle/sectionscss.scss";
 
 const SectionKids = ({ data, fetchData }: forProps) => {
   const containerRef = useRef<HTMLDivElement>(null);

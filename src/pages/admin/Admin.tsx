@@ -1,11 +1,11 @@
-import "./admin.scss";
 import { useState } from "react";
+import { forProps, Products } from "../../App";
 import AddNewItem from "./AddnewItem";
 import close from "../../assets/close.png";
 import edit from "../../assets/edit1.png";
 import supabase from "../../supabase";
 import EditItem from "./edititem";
-import { forProps, Products } from "../../App";
+import "./admin.scss";
 
 const Admin = ({ data, fetchData }: forProps) => {
   const [showAddItem, setShowAddItem] = useState(true);

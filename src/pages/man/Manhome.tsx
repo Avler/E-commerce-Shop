@@ -6,7 +6,7 @@ import basket from "../../assets/basket.png";
 import basketfull from "../../assets/basket-full.png";
 import supabase from "../../supabase";
 import Searchbar from "../../components/SearchBar/SearchBar";
-import "../Pagescss/pages.scss";
+import "../../commonStyle/pagess.scss";
 
 const Manhome = ({ data, fetchData }: forProps) => {
   const forMan = data.filter((elm: Products) => elm.For === "Man");
