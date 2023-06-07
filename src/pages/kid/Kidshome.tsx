@@ -16,23 +16,23 @@ const Kidshome = ({ data, fetchData }: forProps) => {
   const [showlist2, setShowList2] = useState(false);
   const [showlist3, setShowList3] = useState(false);
 
-  const showListItems = (item: boolean) => {
+  const showListItems = (item: boolean)=> {
     setShowList(item);
     setShowList2(false);
     setShowList3(false);
   };
-  const showListItems2 = (item: boolean) => {
+  const showListItems2 = (item: boolean)=> {
     setShowList2(item);
     setShowList(false);
     setShowList3(false);
   };
-  const showListItems3 = (item: boolean) => {
+  const showListItems3 = (item: boolean)=> {
     setShowList3(item);
     setShowList(false);
     setShowList2(false);
   };
 
-  const likedProduct = async (id: number) => {
+  const likedProduct = async (id: number)=> {
     let liked = data.find((elm: Products) => elm.id === id)?.Isliked;
     await supabase.from("Products").update({ Isliked: !liked }).eq("id", id);
     fetchData();
