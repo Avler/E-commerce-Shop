@@ -87,6 +87,7 @@ const SectionMan = ({ data, fetchData }: forProps) => {
             src={elm.img}
             alt="show case img "
             className="product-img "
+            loading="lazy"
           ></img>
         </div>
         <div className="text-conteiner">

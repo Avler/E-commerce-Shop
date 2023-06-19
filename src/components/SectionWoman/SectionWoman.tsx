@@ -85,7 +85,7 @@ const SectionWoman = ({ data, fetchData }: forProps) => {
               onClick={() => likedProduct(elm.id)}
             />
           )}
-          <img src={elm.img} alt="show case img " className="product-img"></img>
+          <img src={elm.img} alt="show case img " className="product-img" loading="lazy"></img>
         </div>
         <div className="text-conteiner">
           <p>{elm.Name}</p>
