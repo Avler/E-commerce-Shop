@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import { Products, forProps } from "../../App";
 import { Link } from "react-router-dom";
-import {LazyLoadImage} from "react-lazy-load-image-component"
 import heart from "../../assets/heart.png";
 import heartliked from "../../assets/heart-liked.png";
 import basket from "../../assets/basket.png";
