@@ -1,4 +1,4 @@
-# E-commerce-Shop 🛒 https://e-commerce-shop-avler.vercel.app/
+# E-commerce Shop 🛒 https://e-commerce-shop-avler.vercel.app/
 
 Technologies:
 
