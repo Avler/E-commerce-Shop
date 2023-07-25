@@ -1,6 +1,8 @@
 import { useState, useRef } from "react";
 import { Products, forProps } from "../../App";
 import { Link } from "react-router-dom";
+import { useLikedProduct } from "../../hooks/likedProduct";
+import { useAddProduct } from "../../hooks/addProductToBasket";
 import heart from "../../assets/heart.png";
 import heartliked from "../../assets/heart-liked.png";
 import basket from "../../assets/basket.png";
@@ -13,24 +15,12 @@ import "../../commonStyle/sectionscss.scss";
 const SectionKids = ({ data, fetchData }: forProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const { likedProduct, setData: setLikedProductData } =
+    useLikedProduct(fetchData);
+  const { addProduct, setData: setAddProductData } = useAddProduct(fetchData);
   const productsForKids = data;
   productsForKids.sort((a: Products, b: Products) => a.id - b.id);
 
-  const likedProduct = async (id: number) => {
-    let liked = productsForKids.find((elm: Products) => elm.id === id)?.Isliked;
-    await supabase.from("Products").update({ Isliked: !liked }).eq("id", id);
-    fetchData();
-  };
-  const addProduct = async (id: number) => {
-    let inbasket = productsForKids.find(
-      (elm: Products) => elm.id === id
-    )?.InBasket;
-    await supabase
-      .from("Products")
-      .update({ InBasket: !inbasket })
-      .eq("id", id);
-    fetchData();
-  };
   function handleLeftArrowClick() {
     containerRef.current!.scrollBy({
       left: -800,
@@ -81,7 +71,12 @@ const SectionKids = ({ data, fetchData }: forProps) => {
               onClick={() => likedProduct(elm.id)}
             />
           )}
-          <img src={elm.img} alt="show case img " className="product-img" loading="lazy"></img>
+          <img
+            src={elm.img}
+            alt="show case img "
+            className="product-img"
+            loading="lazy"
+          ></img>
         </div>
         <div className="text-conteiner">
           <p>{elm.Name}</p>
