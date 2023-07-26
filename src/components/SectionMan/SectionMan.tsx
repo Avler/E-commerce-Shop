@@ -3,21 +3,17 @@ import { Products, forProps } from "../../App";
 import { Link } from "react-router-dom";
 import { useLikedProduct } from "../../hooks/likedProduct";
 import { useAddProduct } from "../../hooks/addProductToBasket";
-import heart from "../../assets/heart.png";
-import heartliked from "../../assets/heart-liked.png";
-import basket from "../../assets/basket.png";
-import basketfull from "../../assets/basket-full.png";
 import left from "../../assets/left.png";
 import right from "../../assets/right.png";
-import supabase from "../../supabase";
+import SectionProducts from "../SectionProducts/SectionProducts";
 import "../../commonStyle/sectionscss.scss";
 
 const SectionMan = ({ data, fetchData }: forProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollLeft, setScrollLeft] = useState(0);
-  const { likedProduct, setData: setLikedProductData } =
-    useLikedProduct(fetchData);
-  const { addProduct, setData: setAddProductData } = useAddProduct(fetchData);
+  const { likedProduct } = useLikedProduct(fetchData);
+  const { addProduct } = useAddProduct(fetchData);
+
   const productsForMan = data;
   productsForMan.sort((a: Products, b: Products) => a.id - b.id);
 
@@ -35,57 +31,6 @@ const SectionMan = ({ data, fetchData }: forProps) => {
     });
     setScrollLeft(containerRef.current!.scrollLeft - 200);
   }
-
-  const products = productsForMan.map((elm: Products) => {
-    return (
-      <div key={elm.id}>
-        <div className="img-conteiner">
-          {elm.InBasket ? (
-            <img
-              src={basketfull}
-              alt="basket"
-              className="basket heart-img-animation"
-              onClick={() => addProduct(elm.id)}
-            />
-          ) : (
-            <img
-              src={basket}
-              alt="basket"
-              className="basket"
-              onClick={() => addProduct(elm.id)}
-            />
-          )}
-          {elm.Isliked === true ? (
-            <img
-              src={heartliked}
-              alt="heart"
-              className={
-                elm.Isliked ? "heart-img heart-img-animation" : "heart-img"
-              }
-              onClick={() => likedProduct(elm.id)}
-            />
-          ) : (
-            <img
-              src={heart}
-              alt=""
-              className="heart-img"
-              onClick={() => likedProduct(elm.id)}
-            />
-          )}
-          <img
-            src={elm.img}
-            alt="show case img "
-            className="product-img "
-            loading="lazy"
-          />
-        </div>
-        <div className="text-conteiner">
-          <p>{elm.Name}</p>
-          <p>Price : {elm.Prize}$</p>
-        </div>
-      </div>
-    );
-  });
 
   return (
     <section className="section-man-conteiner">
@@ -105,7 +50,13 @@ const SectionMan = ({ data, fetchData }: forProps) => {
       <div className="section-man-showcase">
         <p className="section-man-showcase-img-title">Products For Men</p>
         <div className="section-man-showcase-img" ref={containerRef}>
-          {products}
+          {productsForMan.map((product) => (
+            <SectionProducts
+              key={product.id}
+              product={product}
+              fetchData={fetchData}
+            />
+          ))}
           <img
             src={left}
             alt=""

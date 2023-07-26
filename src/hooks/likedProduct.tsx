@@ -1,20 +1,45 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import { Products } from "../App";
 import supabase from "../supabase";
 
-// Hook dla funkcji likedProduct
+// Hook for the likedProduct function
 export function useLikedProduct(fetchData: () => void) {
-  const [data, setData] = useState<Products[]>([]);
-
   const likedProduct = useCallback(
     async (id: number) => {
-      let products = data.slice(); // Kopiujemy stan do lokalnej zmiennej
-      let liked = products.find((elm: Products) => elm.id === id)?.Isliked;
-      await supabase.from("Products").update({ Isliked: !liked }).eq("id", id);
+      // Fetch the product by ID
+      const productToUpdate = await supabase
+        .from("Products")
+        .select("*")
+        .eq("id", id)
+        .single();
+
+      if (productToUpdate.error) {
+        // Handle error
+        console.error("Error fetching product:", productToUpdate.error.message);
+        return;
+      }
+
+      // Toggle the Isliked status
+      const updatedIsLiked = !productToUpdate.data.Isliked;
+
+      // Update the database with the new Isliked status
+      const { data: updatedProduct, error } = await supabase
+        .from("Products")
+        .update({ Isliked: updatedIsLiked })
+        .eq("id", id)
+        .single();
+
+      if (error) {
+        // Handle error
+        console.error("Error updating product:", error.message);
+        return;
+      }
+
+      // Fetch the updated data after successful update
       fetchData();
     },
-    [data]
+    [fetchData]
   );
 
-  return { likedProduct, setData };
+  return { likedProduct };
 }
