@@ -1,8 +1,6 @@
 import { useState, useRef } from "react";
 import { Products, forProps } from "../../App";
 import { Link } from "react-router-dom";
-import { useLikedProduct } from "../../hooks/likedProduct";
-import { useAddProduct } from "../../hooks/addProductToBasket";
 import left from "../../assets/left.png";
 import right from "../../assets/right.png";
 import SectionProducts from "../SectionProducts/SectionProducts";
@@ -11,8 +9,6 @@ import "../../commonStyle/sectionscss.scss";
 const SectionWoman = ({ data, fetchData }: forProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollLeft, setScrollLeft] = useState(0);
-  const { likedProduct } = useLikedProduct(fetchData);
-  const { addProduct } = useAddProduct(fetchData);
 
   const productsForWoman = data;
   productsForWoman.sort((a: Products, b: Products) => a.id - b.id);
