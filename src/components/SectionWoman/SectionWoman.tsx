@@ -11,11 +11,8 @@ import "../../commonStyle/sectionscss.scss";
 const SectionWoman = ({ data, fetchData }: forProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollLeft, setScrollLeft] = useState(0);
-  const { likedProduct, setData: setLikedProductData } = useLikedProduct(
-    fetchData,
-    data
-  );
-  const { addProduct, setData: setAddProductData } = useAddProduct(fetchData);
+  const { likedProduct } = useLikedProduct(fetchData);
+  const { addProduct } = useAddProduct(fetchData);
 
   const productsForWoman = data;
   productsForWoman.sort((a: Products, b: Products) => a.id - b.id);
