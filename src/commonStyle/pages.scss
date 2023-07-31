@@ -55,6 +55,10 @@
           }
         }
       }
+      .main-category-active {
+        color: red;
+        font-weight: 600;
+      }
     }
     .man-page-overlist {
       display: flex;

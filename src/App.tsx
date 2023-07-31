@@ -1,15 +1,20 @@
 import { useEffect } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import {
+  Route,
+  RouterProvider,
+  Navigate,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Outlet,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "./redux/features/productSlice";
 import supabase from "./supabase";
 import Home from "./pages/Home";
-import Manhome from "./pages/man/Manhome";
 import Navbar from "./components/Navbar/Navbar";
 import Admin from "./pages/admin/Admin";
 import Footer from "./components/Footer/Footer";
-import Womanhome from "./pages/woman/Womanhome";
-import Kidshome from "./pages/kid/Kidshome";
+import CategoryPage from "./pages/categoryPages/CategoryPages";
 import "./main.scss";
 
 export interface Products {
@@ -47,30 +52,61 @@ const App = () => {
     }
   }
 
-  return (
-    <>
-      <Navbar fetchData={fetchData} data={dataProducts} />
-      <Routes>
-        <Route index element={<Home fetchData={fetchData} />}></Route>
-        <Route path="*" element={<Navigate to="/" />}></Route>
+  const Root = () => {
+    return (
+      <>
+        <Navbar fetchData={fetchData} data={dataProducts} />
+        <Outlet />
+        <Footer />
+      </>
+    );
+  };
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Root />}>
+        <Route index element={<Home fetchData={fetchData} />} />
+        <Route path="*" element={<Navigate to="/" />} />
+        {/* Use CommonCategoryPage component for all category routes */}
         <Route
-          path="/Man"
-          element={<Manhome data={dataProducts} fetchData={fetchData} />}
-        ></Route>
+          path="/Man/*"
+          element={
+            <CategoryPage
+              data={dataProducts}
+              fetchData={fetchData}
+              category="Man"
+            />
+          }
+        />
         <Route
-          path="/Woman"
-          element={<Womanhome data={dataProducts} fetchData={fetchData} />}
-        ></Route>
+          path="/Woman/*"
+          element={
+            <CategoryPage
+              data={dataProducts}
+              fetchData={fetchData}
+              category="Woman"
+            />
+          }
+        />
         <Route
-          path="/Kids"
-          element={<Kidshome data={dataProducts} fetchData={fetchData} />}
-        ></Route>
+          path="/Kids/*"
+          element={
+            <CategoryPage
+              data={dataProducts}
+              fetchData={fetchData}
+              category="Kids"
+            />
+          }
+        />
         <Route
           path="/Panel-Admin"
           element={<Admin data={dataProducts} fetchData={fetchData} />}
-        ></Route>
-      </Routes>
-      <Footer />
+        />
+      </Route>
+    )
+  );
+  return (
+    <>
+      <RouterProvider router={router} />
     </>
   );
 };
