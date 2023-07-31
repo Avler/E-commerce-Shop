@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Products, forProps } from "../../App";
+import { useLikedProduct } from "../../hooks/likedProduct";
+import { useAddProduct } from "../../hooks/addProductToBasket";
 import logo from "../../assets/logo.png";
 import user from "../../assets/user.png";
 import heart from "../../assets/heart.png";
@@ -23,6 +25,9 @@ const Navbar = ({ fetchData, data }: forProps) => {
   const [singedInPanel, setSingedInpanel] = useState(false);
   const [token, setToken] = useState<any>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
+
+  const { likedProduct } = useLikedProduct(fetchData);
+  const { addProduct } = useAddProduct(fetchData);
 
   const dataLiked = data.filter((item: Products) => item.Isliked === true);
   const dataFromBasket = data.filter(
@@ -90,20 +95,6 @@ const Navbar = ({ fetchData, data }: forProps) => {
     const totalprize = prizeOfBasket(dataFromBasket);
     setPrize(totalprize);
   }, [dataFromBasket]);
-
-  const addProduct = async (id: number) => {
-    let inbasket = data.find((elm: Products) => elm.id === id)?.InBasket;
-    await supabase
-      .from("Products")
-      .update({ InBasket: !inbasket })
-      .eq("id", id);
-    fetchData();
-  };
-  const likedProduct = async (id: number) => {
-    let liked = data.find((elm: Products) => elm.id === id)?.Isliked;
-    await supabase.from("Products").update({ Isliked: !liked }).eq("id", id);
-    fetchData();
-  };
 
   const ProdLiked = dataLiked.map((elm: Products) => {
     return (
@@ -226,13 +217,13 @@ const Navbar = ({ fetchData, data }: forProps) => {
         <div className="cont-navbar-elements-person-menu">
           <ul className="navbar-elements-person-menu">
             <Link to="/Man">
-              <li>Man</li>
+              <li onClick={() => showHamburgerMenu(false)}>Man</li>
             </Link>
             <Link to="/Woman">
-              <li>Woman</li>
+              <li onClick={() => showHamburgerMenu(false)}>Woman</li>
             </Link>
             <Link to="/Kids">
-              <li>Kids</li>
+              <li onClick={() => showHamburgerMenu(false)}>Kids</li>
             </Link>
           </ul>
         </div>

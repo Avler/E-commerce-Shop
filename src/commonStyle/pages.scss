@@ -32,6 +32,7 @@
       font-size: clamp(1rem, 0.5714rem + 1.1429vw, 1.2rem);
       @media (max-width: 1360px) {
         display: flex;
+        flex-wrap: wrap;
         margin: auto;
         gap: 50px;
         position: absolute;
