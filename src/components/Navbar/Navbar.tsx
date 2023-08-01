@@ -25,6 +25,7 @@ const Navbar = ({ fetchData, data }: forProps) => {
   const [singedInPanel, setSingedInpanel] = useState(false);
   const [token, setToken] = useState<any>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [datasLiked, setDatasLiked] = useState<Products[]>([]);
 
   const { likedProduct } = useLikedProduct(fetchData);
   const { addProduct } = useAddProduct(fetchData);
@@ -33,6 +34,9 @@ const Navbar = ({ fetchData, data }: forProps) => {
   const dataFromBasket = data.filter(
     (item: Products) => item.InBasket === true
   );
+  useEffect(() => {
+    setDatasLiked(dataLiked);
+  }, []);
 
   const showHamburgerMenu = (parm: boolean) => {
     setShowMenu(parm);
@@ -96,7 +100,17 @@ const Navbar = ({ fetchData, data }: forProps) => {
     setPrize(totalprize);
   }, [dataFromBasket]);
 
-  const ProdLiked = dataLiked.map((elm: Products) => {
+  const ProdLiked = datasLiked.map((elm: Products) => {
+    const handleLiked = (id: number) => {
+      let liked = elm.Isliked;
+      likedProduct(id);
+      setDatasLiked((elm) =>
+        elm.map((element) => {
+          return element.id === id ? { ...element, Isliked: !liked } : element;
+        })
+      );
+    };
+
     return (
       <div className="liked-items-elements" key={elm.id}>
         <img src={elm.img} alt="" className="liked-img" />

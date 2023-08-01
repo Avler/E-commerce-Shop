@@ -13,7 +13,7 @@ export interface forPropsPages {
   fetchData: () => void;
 }
 
-const CategoryPage = ({ data, fetchData, category }: forPropsPages) => {
+const SubPage = ({ data, fetchData, category }: forPropsPages) => {
   const [subCategory, setSubCategory] = useState("");
   const location = useLocation();
 
@@ -50,9 +50,11 @@ const CategoryPage = ({ data, fetchData, category }: forPropsPages) => {
       <div className="man-home-section">
         <div className="man-home-main">
           <div className="man-page-overlist">
-            <h1 className="man-page-products" onClick={changProductsToAll}>
-              All Products
-            </h1>
+            <Link to={"/Man"}>
+              <h1 className="man-page-products" onClick={changProductsToAll}>
+                All Products
+              </h1>
+            </Link>
             <div className="search-cont">
               <h2 className="man-page-search">Search</h2>
               <div className="search-list">
@@ -74,7 +76,11 @@ const CategoryPage = ({ data, fetchData, category }: forPropsPages) => {
           />
         </div>
         <div className="man-home-main-product">
-          <PagesProducts data={datas} fetchData={fetchData} />
+          <PagesProducts
+            data={datas}
+            fetchData={fetchData}
+            setDatas={setDatas}
+          />
         </div>
         <Outlet />
       </div>
@@ -82,4 +88,4 @@ const CategoryPage = ({ data, fetchData, category }: forPropsPages) => {
   );
 };
 
-export default CategoryPage;
+export default SubPage;

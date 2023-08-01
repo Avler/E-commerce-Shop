@@ -14,7 +14,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Admin from "./pages/admin/Admin";
 import Footer from "./components/Footer/Footer";
-import CategoryPage from "./pages/categoryPages/CategoryPages";
+import SubPage from "./pages/subPages/subPages";
 import "./main.scss";
 
 export interface Products {
@@ -70,17 +70,13 @@ const App = () => {
         <Route
           path="/Man/*"
           element={
-            <CategoryPage
-              data={dataProducts}
-              fetchData={fetchData}
-              category="Man"
-            />
+            <SubPage data={dataProducts} fetchData={fetchData} category="Man" />
           }
         />
         <Route
           path="/Woman/*"
           element={
-            <CategoryPage
+            <SubPage
               data={dataProducts}
               fetchData={fetchData}
               category="Woman"
@@ -90,7 +86,7 @@ const App = () => {
         <Route
           path="/Kids/*"
           element={
-            <CategoryPage
+            <SubPage
               data={dataProducts}
               fetchData={fetchData}
               category="Kids"
