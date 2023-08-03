@@ -42,7 +42,6 @@ const App = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
   async function fetchData() {
     const { data, error } = await supabase.from("Products").select();
     if (error) {

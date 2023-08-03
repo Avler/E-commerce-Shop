@@ -17,6 +17,11 @@ const SectionProducts = ({
 }: { product: Products } & fetch) => {
   const { likedProduct } = useLikedProduct(fetchData);
   const { addProduct } = useAddProduct(fetchData);
+
+  const handleLiked = (id: number) => {
+    likedProduct(id);
+    fetchData();
+  };
   return (
     <div key={product.id}>
       <div className="img-conteiner">
@@ -40,14 +45,14 @@ const SectionProducts = ({
             src={heartliked}
             alt="heart"
             className="heart-img heart-img-animation"
-            onClick={() => likedProduct(product.id)}
+            onClick={() => handleLiked(product.id)}
           />
         ) : (
           <img
             src={heart}
             alt=""
             className="heart-img"
-            onClick={() => likedProduct(product.id)}
+            onClick={() => handleLiked(product.id)}
           />
         )}
         <img
