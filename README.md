@@ -9,6 +9,7 @@ Technologies:
 - backend mad on supabase web
 - Vite
 - Responsive Design
+- Supabase
 
 ## About the Project
 
