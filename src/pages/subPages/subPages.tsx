@@ -5,6 +5,8 @@ import { Link, useLocation, Outlet } from "react-router-dom";
 import Searchbar from "../../components/SearchBar/SearchBar";
 import PagesProducts from "../../components/PagesProducts/PagesProducts";
 import PagesNavigation from "../../components/PagesNavigation/PagesNavigation";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../../redux/features/productSlice";
 import "../../commonStyle/pages.scss";
 
 export interface forPropsPages {
@@ -16,6 +18,12 @@ export interface forPropsPages {
 const SubPage = ({ data, fetchData, category }: forPropsPages) => {
   const [subCategory, setSubCategory] = useState("");
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  const dataProducts: Products[] = useSelector(
+    (state: { product: { value: { item: Products[] } } }) =>
+      state.product.value.item
+  );
 
   useEffect(() => {
     const subCategoryFromURL = location.pathname.split("/").pop();
@@ -39,7 +47,8 @@ const SubPage = ({ data, fetchData, category }: forPropsPages) => {
   };
 
   const changProductsToAll = () => {
-    const updatedCategory = data.filter(
+    fetchData();
+    const updatedCategory = dataProducts.filter(
       (elm: Products) => elm.For === category
     );
     setDatas(updatedCategory);

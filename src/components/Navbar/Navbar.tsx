@@ -38,6 +38,10 @@ const Navbar = ({ fetchData, data }: forProps) => {
     setDatasLiked(dataLiked);
   }, []);
 
+  const showProductFor = () => {
+    fetchData();
+  };
+
   const showHamburgerMenu = (parm: boolean) => {
     setShowMenu(parm);
     setLikedItems(false);
@@ -181,13 +185,13 @@ const Navbar = ({ fetchData, data }: forProps) => {
           <div className="navbar-elements-person-conteiner">
             <ul className="navbar-elements-person">
               <Link to="/Man">
-                <li>Man</li>
+                <li onClick={() => showProductFor()}>Man</li>
               </Link>
               <Link to="/Woman">
-                <li>Woman</li>
+                <li onClick={() => showProductFor()}>Woman</li>
               </Link>
               <Link to="/Kids">
-                <li>Kids</li>
+                <li onClick={() => showProductFor()}>Kids</li>
               </Link>
             </ul>
             {showMenu ? (
@@ -208,7 +212,11 @@ const Navbar = ({ fetchData, data }: forProps) => {
           </div>
           <div className="navbar-elements-logo">
             <Link to="/">
-              <img src={logo} alt="logo of website" />
+              <img
+                src={logo}
+                alt="logo of website"
+                onClick={() => showProductFor()}
+              />
             </Link>
             <h1>AvShop</h1>
           </div>
