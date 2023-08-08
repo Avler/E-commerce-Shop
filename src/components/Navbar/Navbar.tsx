@@ -171,7 +171,7 @@ const Navbar = ({ fetchData, data }: forProps) => {
   });
   const handleAddToBaskett = (id: number) => {
     addProduct(id);
-    const update = dataFromBasket.map((element) => {
+    const update = datasBasket.map((element) => {
       return element.id === id
         ? { ...element, InBasket: !element.InBasket }
         : element;
