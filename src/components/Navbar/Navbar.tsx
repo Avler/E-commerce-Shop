@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Products, forProps } from "../../App";
 import { useLikedProduct } from "../../hooks/likedProduct";
 import { useAddProduct } from "../../hooks/addProductToBasket";
+import { useDispatch } from "react-redux";
+import { getAllProducts } from "../../redux/features/productSlice";
 import logo from "../../assets/logo.png";
 import user from "../../assets/user.png";
 import heart from "../../assets/heart.png";
@@ -26,16 +28,18 @@ const Navbar = ({ fetchData, data }: forProps) => {
   const [token, setToken] = useState<any>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [datasLiked, setDatasLiked] = useState<Products[]>([]);
+  const [datasBasket, setDatasBasket] = useState<Products[]>([]);
 
   const { likedProduct } = useLikedProduct(fetchData);
   const { addProduct } = useAddProduct(fetchData);
-
+  const dispatch = useDispatch();
   const dataLiked = data.filter((item: Products) => item.Isliked === true);
   const dataFromBasket = data.filter(
     (item: Products) => item.InBasket === true
   );
   useEffect(() => {
     setDatasLiked(dataLiked);
+    setDatasBasket(dataFromBasket);
   }, []);
 
   const showProductFor = () => {
@@ -71,6 +75,7 @@ const Navbar = ({ fetchData, data }: forProps) => {
   const showLogin = () => {
     setShowRegister(false);
   };
+
   const prizeOfBasket = (object: { Prize: number }[]) => {
     let totalprize = 0;
     for (let i = 0; i < object.length; i++) {
@@ -104,18 +109,26 @@ const Navbar = ({ fetchData, data }: forProps) => {
     setPrize(totalprize);
   }, [dataFromBasket]);
 
+  const handleLiked = (id: number) => {
+    likedProduct(id);
+    const update = datasLiked.map((element) => {
+      return element.id === id
+        ? { ...element, Isliked: !element.Isliked }
+        : element;
+    });
+    setDatasLiked(update);
+  };
+  const handleAddToBasket = (id: number) => {
+    addProduct(id);
+    const update = datasLiked.map((element) => {
+      return element.id === id
+        ? { ...element, InBasket: !element.InBasket }
+        : element;
+    });
+    setDatasLiked(update);
+  };
   const ProdLiked = datasLiked.map((elm: Products) => {
-    const handleLiked = (id: number) => {
-      let liked = elm.Isliked;
-      likedProduct(id);
-      setDatasLiked((elm) =>
-        elm.map((element) => {
-          return element.id === id ? { ...element, Isliked: !liked } : element;
-        })
-      );
-    };
-
-    return (
+    return elm.Isliked ? (
       <div className="liked-items-elements" key={elm.id}>
         <img src={elm.img} alt="" className="liked-img" />
         <div className="liked-img-conteiner">
@@ -128,35 +141,45 @@ const Navbar = ({ fetchData, data }: forProps) => {
                   src={basketfull}
                   alt="basket"
                   className="img-basked"
-                  onClick={() => addProduct(elm.id)}
+                  onClick={() => handleAddToBasket(elm.id)}
                 />
               ) : (
                 <img
                   src={basketimg}
                   alt="basket"
                   className="img-basked"
-                  onClick={() => addProduct(elm.id)}
+                  onClick={() => handleAddToBasket(elm.id)}
                 />
               )}
-              <p onClick={() => addProduct(elm.id)}>Add to Basket</p>
+              <p onClick={() => handleAddToBasket(elm.id)}>Add to Basket</p>
             </div>
             <div className="liked-icons-cont">
               <img
                 src={close}
                 alt="liked"
                 className="img-liked"
-                onClick={() => likedProduct(elm.id)}
+                onClick={() => handleLiked(elm.id)}
               />
-              <p onClick={() => likedProduct(elm.id)}>Remove Item</p>
+              <p onClick={() => handleLiked(elm.id)}>Remove Item</p>
             </div>
           </div>
         </div>
       </div>
+    ) : (
+      <></>
     );
   });
-
-  const ProdBasket = dataFromBasket.map((elm: Products) => {
-    return (
+  const handleAddToBaskett = (id: number) => {
+    addProduct(id);
+    const update = dataFromBasket.map((element) => {
+      return element.id === id
+        ? { ...element, InBasket: !element.InBasket }
+        : element;
+    });
+    setDatasBasket(update);
+  };
+  const ProdBasket = datasBasket.map((elm: Products) => {
+    return elm.InBasket ? (
       <div className="liked-items-elements" key={elm.id}>
         <img src={elm.img} alt="" className="liked-img" />
         <div className="liked-img-conteiner">
@@ -168,13 +191,15 @@ const Navbar = ({ fetchData, data }: forProps) => {
                 src={close}
                 alt="liked"
                 className="img-liked"
-                onClick={() => addProduct(elm.id)}
+                onClick={() => handleAddToBaskett(elm.id)}
               />
-              <p onClick={() => addProduct(elm.id)}>Remove Item</p>
+              <p onClick={() => handleAddToBaskett(elm.id)}>Remove Item</p>
             </div>
           </div>
         </div>
       </div>
+    ) : (
+      <></>
     );
   });
 
