@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { forPropsPages } from "../../pages/subPages/subPages";
 import { Link, useLocation } from "react-router-dom";
 import { Products } from "../../App";
 import "../../commonStyle/pages.scss";

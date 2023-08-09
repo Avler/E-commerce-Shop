@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { Products } from "../../App";
 import { useLikedProduct } from "../../hooks/likedProduct";
 import { useAddProduct } from "../../hooks/addProductToBasket";
@@ -9,6 +8,7 @@ import basket from "../../assets/basket.png";
 import basketfull from "../../assets/basket-full.png";
 import { getAllProducts } from "../../redux/features/productSlice";
 import "../../commonStyle/sectionscss.scss";
+
 interface fetch {
   fetchData: () => void;
 }

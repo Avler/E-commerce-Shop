@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import supabase from "../supabase";
 import { useDispatch } from "react-redux";
-import { getAllProducts } from "../redux/features/productSlice";
 
 // Hook for the likedProduct function
 export function useLikedProduct(fetchData: () => void) {

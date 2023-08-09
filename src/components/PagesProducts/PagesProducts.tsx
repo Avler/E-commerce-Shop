@@ -1,7 +1,6 @@
 import { Products } from "../../App";
 import { useLikedProduct } from "../../hooks/likedProduct";
 import { useAddProduct } from "../../hooks/addProductToBasket";
-import { useState } from "react";
 import heart from "../../assets/heart.png";
 import heartliked from "../../assets/heart-liked.png";
 import basket from "../../assets/basket.png";

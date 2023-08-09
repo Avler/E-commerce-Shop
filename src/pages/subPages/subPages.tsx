@@ -6,7 +6,6 @@ import Searchbar from "../../components/SearchBar/SearchBar";
 import PagesProducts from "../../components/PagesProducts/PagesProducts";
 import PagesNavigation from "../../components/PagesNavigation/PagesNavigation";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/features/productSlice";
 import "../../commonStyle/pages.scss";
 
 export interface forPropsPages {
